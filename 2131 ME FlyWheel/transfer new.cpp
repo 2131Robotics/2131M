@@ -236,3 +236,51 @@ if (!Controller1.ButtonLeft.pressing())
         }
         
         DriveCont_LockCont();
+		
+bool AutoIntakeEnabled;		
+int	BottomLightValue;
+int TopLightValue;
+int BottomBallInMax = 60;
+int TopBallInMax = 60;
+
+bool BallInBottom;
+bool BallInTop;
+
+//void ()
+
+
+void Auto_Intake(){
+	BottomLightValue = BallSenseBottom.value(vex::analogUnits::range8bit);
+	TopLightValue = BallSenseTop.value(vex::analogUnits::range8bit);
+	
+	if(BottomLightValue < BottomBallInMax) BallInBottom = true;
+	if(TopLightValue < TopBallInMax) BallInTop = true;
+	
+	else {
+		BallInBottom = false;
+		BallInTop = false;
+	}
+	
+	if(Controller1.ButtonL1.pressing()) {
+		setIndexPower(-100);
+		}
+	else if(!Controller1.ButtonL1.pressing()){
+		if(!BallInBottom && !BallInTop){
+			setIntakePower(100);
+			setIndexPower(100);
+		}
+		if(BallInBottom && !BallInTop){
+			setIntakePower(100);
+			setIndexPower(100);
+		}
+		if(BallInTop && !BallInBottom){
+			setIntakePower(100);
+			setIndexPower(0);
+		}
+		if(BallInBottom && BallInTop){
+			setIntakePower(100);
+			setIndexPower(100);
+		}
+	}
+	
+}

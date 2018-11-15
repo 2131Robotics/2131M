@@ -2,6 +2,7 @@ bool WristMotorConBtnPressed;
 bool WristMotorInverted = false;
 
 
+
 class Ramping{
     public:
     int ChangePct=1;      //the amout of Pct change per loop
