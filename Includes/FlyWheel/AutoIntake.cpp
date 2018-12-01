@@ -20,9 +20,17 @@ void Auto_Intake() {
 	if (TopLightValue < TopBallInMax) BallInTop = true;
 	else BallInTop = false;
 
-	if (Controller1.ButtonL1.pressing()) {
+	if (Controller1.ButtonL1.pressing() || AutoIndexFiring==true ) {
 		setIndexPower(-100);
+		//for aton firing
+		if(AutoIndexFiring){
+			//wait till gone
+			vex::task::sleep(500);
+			AutoIndexFiring = false;
+			setIndexPower(0);
+		}
 	}
+
 	else {
 		if (BallInBottom && BallInTop) {
 			setIntakePower(0);

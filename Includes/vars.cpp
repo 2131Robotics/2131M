@@ -22,3 +22,9 @@ bool DriveLockInverted;
 
 bool IntakeEnabledBtnPressed;
 bool IntakeEnabledInverted = false;
+bool UserAutoIntakeMode = false;
+bool AutoIndexFiring = false;
+
+//aton vars
+double Nine = 10;
+int Full = 180;

@@ -7,8 +7,8 @@ void ManualDriveCont(bool Flipped){
     }
 }
 void driveLock(){
-    LeftMotor.stop(vex::brakeType::hold);
-    RightMotor.stop(vex::brakeType::hold);
+    LeftBMotor.stop(vex::brakeType::hold);
+    RightBMotor.stop(vex::brakeType::hold);
 }
 void DriveCont_LockCont(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
@@ -21,13 +21,13 @@ void DriveCont_LockCont(){
     
     if(DriveLockInverted) driveLock();
     else if(!DriveLockInverted && modeVar == 0) {
-        LeftMotor.setStopping(vex::brakeType::coast);
-        RightMotor.setStopping(vex::brakeType::coast);
+        LeftBMotor.setStopping(vex::brakeType::coast);
+        RightBMotor.setStopping(vex::brakeType::coast);
         ManualDriveCont(true);
     }
     else if(!DriveLockInverted && modeVar == 1) {
-        LeftMotor.setStopping(vex::brakeType::coast);
-        RightMotor.setStopping(vex::brakeType::coast);
+        LeftBMotor.setStopping(vex::brakeType::coast);
+        RightBMotor.setStopping(vex::brakeType::coast);
         ManualDriveCont(false);
     }
 }
@@ -108,4 +108,17 @@ void AutoIntakeIndexCont(){
         FlyWheelControll();
 
     }
+}
+
+void toggleUserModesUpdate(){
+    if (!Controller1.ButtonX.pressing())																	//																											//
+            usertoggle=1;																				//																											//
+        if (Controller1.ButtonX.pressing() && modeVar==1 && usertoggle==1){
+            modeVar=0;																				//		- To switch between
+            usertoggle=0;																				//			our two different
+        }																											//			modes
+        if (Controller1.ButtonX.pressing() && modeVar==0 && usertoggle==1){	//
+            modeVar=1;																				//
+            usertoggle=0;																				//
+        }
 }

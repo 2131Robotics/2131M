@@ -24,7 +24,7 @@ int ControllerScreen(){
     Brain.Screen.render(true,false);
     while(true){
         Brain.Screen.newLine();
-        Brain.Screen.print(AutoIntakeEnabled);
+        Brain.Screen.print((Gyro.value(vex::rotationUnits::deg)));
         Brain.Screen.render();
         vex::task::sleep(20);
         

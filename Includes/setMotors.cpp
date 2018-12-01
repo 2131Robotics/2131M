@@ -1,20 +1,20 @@
 //------------------Drive voids----------------------//
 void LeftDriveStop(){
-    LeftMotor.stop();
+    LeftBMotor.stop();
 }
 void RightDriveStop(){
-    RightMotor.stop();
+    RightBMotor.stop();
 }
 void setLeftDrivePower(int pct){
     if(pct==0)   LeftDriveStop();
     else{
-        LeftMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
+        LeftBMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
 }
 void setRightDrivePower(int pct){
     if(pct==0)  RightDriveStop();
     else{
-        RightMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
+        RightBMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
 }
 void setDrivePower(int left, int right){
