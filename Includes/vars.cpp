@@ -18,12 +18,27 @@ bool FlipperMotorConBtnPressed;
 bool FlipperMotorInverted = false;
 
 bool DriveLockConBtnPressed;
-bool DriveLockInverted;
+bool DriveLockInverted = false;
+
+bool WristMotorConBtnPressed;
+bool WristMotorInverted = false;
 
 bool IntakeEnabledBtnPressed;
 bool IntakeEnabledInverted = false;
 bool UserAutoIntakeMode = false;
 bool AutoIndexFiring = false;
+
+bool liftButtonWait;
+int liftMode = 1;
+int PIDliftUserCpower = 100;
+
+bool jawButtonWait;
+int jawMode = 1;
+int jawUserCpower = 100;
+
+bool JawMotorConBtnPressed;
+bool JawMotorInverted = false;
+
 
 //aton vars
 double Nine = 10;

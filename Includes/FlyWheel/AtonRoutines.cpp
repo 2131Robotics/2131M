@@ -26,6 +26,20 @@ void testB(){
    // toggleFlipper();
 }
 
-void RightBlue(){
-    AtonDriveRamp(10);
+void FrontBlue(){
+    AutoIntakeEnabled = true;
+    setFlyPower(600);
+    AtonDriveRamp(42);
+    TimeAutoDrive(750,50);
+
+    
+}
+void BackBlue(){
+
+}
+void FrontRed(){
+
+}
+void BackRed(){
+
 }

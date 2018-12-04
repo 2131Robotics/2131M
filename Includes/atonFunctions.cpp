@@ -49,10 +49,26 @@ void TimeAutoDrive(int time, int power){
     RightBMotor.stop(vex::brakeType::coast);
     LeftBMotor.stop(vex::brakeType::coast);
 }
+//my old double function turning
+/*void TurnRamp(double deg,int LPowerSend=50,int RPowerSend=50,int EndWait=250){ //-left,+right
+    int Dir=sgn(deg);
+    deg=abs(deg)/12.56;
+    LPowerSend=LPowerSend*Dir;
+    RPowerSend=RPowerSend*Dir;
+    RightBMotor.resetRotation();
+    while(abs(RightBMotor.rotation(vex::rotationUnits::rev))<deg){
+        DI(LPowerSend,-RPowerSend);
+        vex::task::sleep(1);
+    }
+    DI(0,0);
+    while(RightBMotor.isSpinning() || LeftBMotor.isSpinning()){
+        vex::task::sleep(1);
+    }
+    vex::task::sleep(EndWait);
+}*/
 /*void Turn(double Deg,bool Rel=true,int EndWait=250,int LPct=25,int RPct=25){//-left,+right
 //    GyroCalibration(true);
     if(Rel) Deg+=Gyro.value(vex::rotationUnits::deg);
-    /*
     if(std::abs(Deg)>360){
         while(std::abs(Deg)>360){
             Deg-=SGN(Deg)*360;//take care of the jump between -360,0,360
@@ -142,13 +158,4 @@ void IntakeAtonSet(bool ON, bool direction){
         if(!direction) setIntakePower(-100);
     }
     if(!ON){IntakeMotor.stop();}
-}
-
-void FlyChargeUpWait(){
-    setFlyPower(600);
-    while(FlyMotor.velocity(vex::velocityUnits::pct)<100){}
-}
-void toggleFlipper(){
-    FlipperMotor.startRotateFor(FlipperMotorInverted ? -350 : 350,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
-    FlipperMotorInverted=!FlipperMotorInverted;
 }

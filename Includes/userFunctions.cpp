@@ -7,8 +7,7 @@ void ManualDriveCont(bool Flipped){
     }
 }
 void driveLock(){
-    LeftBMotor.stop(vex::brakeType::hold);
-    RightBMotor.stop(vex::brakeType::hold);
+    stopDriveHold();
 }
 void DriveCont_LockCont(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
@@ -21,42 +20,16 @@ void DriveCont_LockCont(){
     
     if(DriveLockInverted) driveLock();
     else if(!DriveLockInverted && modeVar == 0) {
-        LeftBMotor.setStopping(vex::brakeType::coast);
-        RightBMotor.setStopping(vex::brakeType::coast);
+        setDriveBrakeCoast();
         ManualDriveCont(true);
     }
     else if(!DriveLockInverted && modeVar == 1) {
-        LeftBMotor.setStopping(vex::brakeType::coast);
-        RightBMotor.setStopping(vex::brakeType::coast);
+        setDriveBrakeCoast();
         ManualDriveCont(false);
     }
 }
 
-void FlipperControll(){
-    if(Controller1.ButtonR1.pressing() && FlipperMotorConBtnPressed==false){
-        FlipperMotorConBtnPressed=true;
-        FlipperMotor.startRotateFor(FlipperMotorInverted ? -350 : 350,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
-        FlipperMotorInverted=!FlipperMotorInverted;
-    }
-    if(!Controller1.ButtonR1.pressing() && FlipperMotorConBtnPressed==true){
-        FlipperMotorConBtnPressed=false;
-    }
-}
-void FliperStop(){
-    FlipperMotor.stop();
-}
-
-void ManFliperControl(){
-    if(Controller1.ButtonR2.pressing()) {
-        FlipperMotor.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-    }   
-    else if(Controller1.ButtonR1.pressing()) {
-        FlipperMotor.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-    }   
-    else FlipperMotor.stop(vex::brakeType::coast);
-}
-
-void intakeControll(){
+/*void intakeControll(){
     if(Controller1.ButtonR1.pressing()) {
         setIntakePower(100);
     }   
@@ -64,51 +37,7 @@ void intakeControll(){
         setIntakePower(-100);
     }   
     else IntakeMotor.stop(vex::brakeType::coast);
-}
-
-void indexControll(){
-    if(Controller1.ButtonL1.pressing()) {
-        setIndexPower(-100);
-    }   
-    else if(Controller1.ButtonL2.pressing()) {
-        setIndexPower(100);
-    }   
-    else IndexMotor.stop(vex::brakeType::coast);
-}
-
-void FlyWheelControll(){
-    if(Controller1.ButtonUp.pressing()) {
-        setFlyPower(600);
-    }   
-    if(Controller1.ButtonLeft.pressing()) {
-        setFlyPower(300);
-    }
-    if(Controller1.ButtonRight.pressing()) {
-        setFlyPower(100);
-    }
-    if(Controller1.ButtonDown.pressing()) {
-        FlyMotor.setStopping(vex::brakeType::coast);
-        FlyMotor.stop();
-    } 
-}
-
-void AutoIntakeIndexCont(){
-    if(Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==false){
-        IntakeEnabledBtnPressed=true;
-        IntakeEnabledInverted=!IntakeEnabledInverted;
-    }
-    if(!Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==true){
-        IntakeEnabledBtnPressed=false;
-    }
-    if(IntakeEnabledInverted){ AutoIntakeEnabled = true;}
-    if(!IntakeEnabledInverted) {
-        AutoIntakeEnabled = false;
-        intakeControll();
-        indexControll();
-        FlyWheelControll();
-
-    }
-}
+}*/
 
 void toggleUserModesUpdate(){
     if (!Controller1.ButtonX.pressing())																	//																											//
