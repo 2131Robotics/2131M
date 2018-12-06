@@ -1,152 +1,111 @@
 void FirstTest(){
-    
+    AutoIntakeEnabled = false;
+    AtonDriveRamp(1,100);
+    toggleWrist();
+    PunchAton(true);
+    wait(5000);
 }
 
 void BlueFront(){
     
-    //WristLock();
-    AtonDriveRamp(-33,100);
-    IntakeAtonSet(true, 1);
-    AtonDriveRamp(-9,100);
-    vex::task::sleep(500);
-    IntakeAtonSet(false, 1);
-    AtonDriveRamp(66,100);
-    TimeAutoDrive(250,60);
-    IntakeAtonSet(false, 1);
+    AutoIntakeEnabled = false;
+    AtonDriveRamp(-25,100);
+    wait(500);
+    AtonDriveRamp(18,100);
     
-    AtonDriveRamp(-3,100);
-    AtonTurn(14);
-    AtonDriveRamp(-.6,100);
-    PunchAton(true);
+    AtonTurn(Nine);
+    AutoPuncherFiring = true;
+    wait(500);
 
-    AtonTurn(1);
-    IntakeAtonSet(true, 1);
-    AtonDriveRamp(-12,100);
-    PunchAton(true);
-    IntakeAtonSet(false, 1);
-    AtonTurn(1.5);
-    AtonDriveRamp(-18.5,100);
-/*
+    //Brain.Screen.newLine();
+    //Brain.Screen.print("start");
+    AtonDriveRamp(-6,100);
+    //Brain.Screen.print("end");
+    AutoPuncherFiring = true;
+    wait(500);
+    AtonTurn(2);
+    AtonDriveRamp(-6,100);
+
+    AutoLift(250,50,true);
+    AutoLift(0,50,true);
+    AtonTurn(2);
+    AtonDriveRamp(6,100);
     toggleWrist();
-    //AutoLift(30,50,true);
-    toggleJaw();
-    AtonDriveRamp(10,100);
-    AtonTurn(10);
-    toggleWrist();
-    AtonDriveRamp(2.5,100);
-    toggleJaw();
-    vex::task::sleep(500);
-    toggleWrist();
-    
-    toggleJaw();
-    vex::task::sleep(500);
-    toggleJaw();*/
+    AtonDriveRamp(-3,100);
 }
 
 void BlueBack(){
+    AutoPuncherFiring = true;
+    wait(500);
+    AutoPuncherFiring = true;
+
+    AtonTurn(-6);
+    AtonDriveRamp(-27,100);
+
+    wait(250);
+    AtonDriveRamp(7,100);
     
-    PunchAton(true);
-    IntakeAtonSet(true, 1);
-    AtonTurn(-7);
-    toggleWrist();
-    
-    TimeAutoDrive(100,60);
-    AtonDriveRamp(-33,100);
-    AtonDriveRamp(-9,100);
-    vex::task::sleep(250);
-    IntakeAtonSet(true, 1);
-    vex::task::sleep(250);
-    IntakeAtonSet(false, 1);
-    
-    AtonTurn(10);
-    setJawPower(100);
-    AtonDriveRamp(17.5,100);
-    setJawPower(0);
-    
+    AtonTurn(13);
     AutoLift(250,50,true);
-    vex::task::sleep(500);
-    setJawPower(100);
-    vex::task::sleep(500);
-    setJawPower(0);
     AutoLift(0,50,true);
-    
-    AtonTurn(8);
-    AtonDriveRamp(-10,100);
-    AtonTurn(-8);
-    AtonDriveRamp(-44,100);
-    driveLock();
+    AtonDriveRamp(8,100);
+    toggleWrist();
+
+    AtonDriveRamp(-3,60);
+    AtonTurn((-Nine/2));
+    AtonDriveRamp(-28,100);
+    stopDriveBrake();
 }
 
 void RedFront(){
-        
-    //WristLock();
-    AtonDriveRamp(-33,100);
-    IntakeAtonSet(true, 1);
-    AtonDriveRamp(-9,100);
-    vex::task::sleep(500);
-    IntakeAtonSet(false, 1);
-    AtonDriveRamp(66,100);
-    TimeAutoDrive(250,60);
-    IntakeAtonSet(false, 1);
     
-    AtonDriveRamp(-3,100);
-    AtonTurn(-14);
-    AtonDriveRamp(-.6,100);
-    PunchAton(true);
+    AutoIntakeEnabled = false;
+    AtonDriveRamp(-28,100);
+    wait(500);
+    AtonDriveRamp(25,100);
+    
+    AtonTurn(-Nine-.35);
+    AutoPuncherFiring = true;
+    wait(500);
+    AtonTurn(-.5);
 
-    AtonTurn(-1);
-    IntakeAtonSet(true, 1);
-    AtonDriveRamp(-12,100);
-    PunchAton(true);
-    IntakeAtonSet(false, 1);
-    AtonTurn(-1.5);
-    AtonDriveRamp(-18.5,100);
-/*
+    //Brain.Screen.newLine();
+    //Brain.Screen.print("start");
+    AtonDriveRamp(-6,100);
+    //Brain.Screen.print("end");
+
+    AutoPuncherFiring = true;
+    wait(500);
+    //AtonTurn(-2);
+    AtonDriveRamp(-6,100);
+
+    AutoLift(250,50,true);
+    AutoLift(0,50,true);
+    AtonTurn(-6);
+    AtonDriveRamp(6,100);
     toggleWrist();
-    //AutoLift(30,50,true);
-    toggleJaw();
-    AtonDriveRamp(10,100);
-    AtonTurn(-10);
-    toggleWrist();
-    AtonDriveRamp(2.5,100);
-    toggleJaw();
-    vex::task::sleep(500);
-    toggleWrist();
-    
-    toggleJaw();
-    vex::task::sleep(500);
-    toggleJaw();*/
+    AtonDriveRamp(-3,100);
 }
 
 void RedBack(){
-    PunchAton(true);
-    IntakeAtonSet(true, 1);
-    AtonTurn(7);
-    toggleWrist();
+    AutoPuncherFiring = true;
+    wait(500);
+    AutoPuncherFiring = true;
+
+    AtonTurn(6);
+    AtonDriveRamp(-27,100);
+
+    wait(250);
+    AtonDriveRamp(7,100);
     
-    TimeAutoDrive(100,60);
-    AtonDriveRamp(-33,100);
-    AtonDriveRamp(-9,100);
-    vex::task::sleep(250);
-    IntakeAtonSet(true, 1);
-    vex::task::sleep(250);
-    IntakeAtonSet(false, 1);
-    
-    AtonTurn(-10);
-    //setJawPower(100);
-    AtonDriveRamp(17.5,100);
-    //setJawPower(0);
-    
+    AtonTurn(-13);
     AutoLift(250,50,true);
-    vex::task::sleep(500);
-    //setJawPower(100);
-    vex::task::sleep(500);
-    //setJawPower(0);
     AutoLift(0,50,true);
-    
-    AtonTurn(-8);
-    AtonDriveRamp(-10,100);
-    AtonTurn(8);
-    AtonDriveRamp(-44,100);
-    driveLock();
+    AtonDriveRamp(8,100);
+    toggleWrist();
+
+    AtonDriveRamp(-3,60);
+    AtonTurn((Nine/2));
+    AtonDriveRamp(-28,100);
+    stopDriveBrake();
 }

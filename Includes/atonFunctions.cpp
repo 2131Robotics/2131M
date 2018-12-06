@@ -33,7 +33,7 @@ void AtonDriveRamp(double Distance,int Pct=100,int EndWait=250,int Correction=2)
         vex::task::sleep(1);
     }
     SetDRpower(0,0);
-    while(RightBMotor.isSpinning() || LeftBMotor.isSpinning()){
+    while(LDR.Pct!=0 || RDR.Pct!=0){
         vex::task::sleep(1);
     }
     vex::task::sleep(EndWait);
@@ -158,4 +158,7 @@ void IntakeAtonSet(bool ON, bool direction){
         if(!direction) setIntakePower(-100);
     }
     if(!ON){IntakeMotor.stop();}
+}
+void wait(int time){
+    vex::task::sleep(time);
 }

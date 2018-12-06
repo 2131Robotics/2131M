@@ -1,26 +1,38 @@
 void setDriveBrakeCoast(){
+    LeftFMotor.setStopping(vex::brakeType::coast);
+    RightFMotor.setStopping(vex::brakeType::coast);
     LeftBMotor.setStopping(vex::brakeType::coast);
     RightBMotor.setStopping(vex::brakeType::coast);
 }
 void setDriveBrakeBrake(){
+    LeftFMotor.setStopping(vex::brakeType::brake);
+    RightFMotor.setStopping(vex::brakeType::brake);
     LeftBMotor.setStopping(vex::brakeType::brake);
     RightBMotor.setStopping(vex::brakeType::brake);
 }
 void setDriveBrakeHold(){
+    LeftFMotor.setStopping(vex::brakeType::hold);
+    RightFMotor.setStopping(vex::brakeType::hold);
     LeftBMotor.setStopping(vex::brakeType::hold);
     RightBMotor.setStopping(vex::brakeType::hold);
 }
 void stopDriveCoast(){
     LeftBMotor.stop(vex::brakeType::coast);
     RightBMotor.stop(vex::brakeType::coast);
+    LeftFMotor.stop(vex::brakeType::coast);
+    RightFMotor.stop(vex::brakeType::coast);
 }
 void stopDriveBrake(){
     LeftBMotor.stop(vex::brakeType::brake);
     RightBMotor.stop(vex::brakeType::brake);
+    LeftFMotor.stop(vex::brakeType::brake);
+    RightFMotor.stop(vex::brakeType::brake);
 }
 void stopDriveHold(){
     LeftBMotor.stop(vex::brakeType::hold);
     RightBMotor.stop(vex::brakeType::hold);
+    LeftFMotor.stop(vex::brakeType::hold);
+    RightFMotor.stop(vex::brakeType::hold);
 }
 void FlyWheelControll(){
     if(Controller1.ButtonUp.pressing()) {

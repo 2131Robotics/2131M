@@ -83,7 +83,7 @@ void liftContVPID(){
 void wirstControll(){
     if(Controller1.ButtonR2.pressing() && WristMotorConBtnPressed==false){
         WristMotorConBtnPressed=true;
-        WristMotor.startRotateFor(WristMotorInverted ? 170 : -170,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+        WristMotor.startRotateFor(WristMotorInverted ? 350 : -350,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
         WristMotorInverted=!WristMotorInverted;
     }
     if(!Controller1.ButtonR2.pressing() && WristMotorConBtnPressed==true){

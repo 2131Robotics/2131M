@@ -4,6 +4,12 @@ void puncherControll(){
     }  
     else PuncherMotor.stop(vex::brakeType::coast);
 }
+void PunchAton(bool wait){
+    if(wait)
+        PuncherMotor.rotateFor(-360,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+    if(!wait)
+        PuncherMotor.startRotateFor(-360,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+}
 //--------------------------------------------//
 bool AutoIntakeEnabled = false;		
 int	BottomLightValue;
@@ -23,12 +29,22 @@ void Auto_Intake(){
 	if(TopLightValue < TopBallInMax) BallInTop = true;
 	    else BallInTop = false;
     
-    if(BallInBottom && BallInTop){
-        setIntakePower(0);
-        IntakeMotor.stop(vex::brakeType::brake);
+    if(Controller1.ButtonL1.pressing() || AutoPuncherFiring){
+         if (!AutoPuncherFiring) setPuncherPower(100);
+         if (AutoPuncherFiring){
+              PunchAton(true);
+              AutoPuncherFiring = false;
+         }
     }
     else{
-        setIntakePower(100);
-        puncherControll();
+        if(BallInBottom && BallInTop){
+            setPuncherPower(0);
+            setIntakePower(0);
+            IntakeMotor.stop(vex::brakeType::brake);
+        }
+        else{
+            setIntakePower(100);
+            setPuncherPower(0);
+        }
     }
 }

@@ -27,6 +27,7 @@ bool IntakeEnabledBtnPressed;
 bool IntakeEnabledInverted = false;
 bool UserAutoIntakeMode = false;
 bool AutoIndexFiring = false;
+bool AutoPuncherFiring = false;
 
 bool liftButtonWait;
 int liftMode = 1;
@@ -41,5 +42,5 @@ bool JawMotorInverted = false;
 
 
 //aton vars
-double Nine = 10;
+double Nine = 9;
 int Full = 180;
