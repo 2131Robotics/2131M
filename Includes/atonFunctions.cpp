@@ -43,11 +43,17 @@ void TimeAutoDrive(int time, int power){
     LeftBMotor.resetRotation();
     RightBMotor.resetRotation();
 
-    RightBMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    DI(power,power);
+    vex::task::sleep(time);
+    DI(0,0);
+    while(LDR.Pct!=0 || RDR.Pct!=0){
+        vex::task::sleep(1);
+    }
+    /*RightBMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
     LeftBMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
     vex::task::sleep(time);
     RightBMotor.stop(vex::brakeType::coast);
-    LeftBMotor.stop(vex::brakeType::coast);
+    LeftBMotor.stop(vex::brakeType::coast);*/
 }
 //my old double function turning
 /*void TurnRamp(double deg,int LPowerSend=50,int RPowerSend=50,int EndWait=250){ //-left,+right
