@@ -23,6 +23,9 @@ bool DriveLockInverted = false;
 bool WristMotorConBtnPressed;
 bool WristMotorInverted = false;
 
+bool WristMotorConBtnTwoPressed;
+bool WristMotorInvertedTwo = true;
+
 bool IntakeEnabledBtnPressed;
 bool IntakeEnabledInverted = false;
 bool UserAutoIntakeMode = false;

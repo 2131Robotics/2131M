@@ -1,5 +1,4 @@
 void FirstTest(){
-    AutoIntakeEnabled = false;
     TimeAutoDrive(1000,12);
     AtonDriveRamp(8,100);
     stopDriveHold();
@@ -7,13 +6,14 @@ void FirstTest(){
     TimeAutoDrive(1000,12);
     AtonDriveRamp(10,100);
     stopDriveHold();
+    AutoIntakeEnabled = false;
     
 }
 
 void BlueFront(){
     
     AutoIntakeEnabled = false;
-    AtonDriveRamp(-25,100);
+    AtonDriveRamp(-26,100);
     wait(500);
     AtonDriveRamp(18,100);
     
@@ -27,8 +27,8 @@ void BlueFront(){
     //Brain.Screen.print("end");
     AutoPuncherFiring = true;
     wait(500);
-    AtonTurn(2);
-    AtonDriveRamp(-6,100);
+    AtonTurn(1.5);
+    AtonDriveRamp(-7,100);
 
     AutoLift(250,50,true);
     AutoLift(0,50,true);
@@ -111,9 +111,9 @@ void RedBack(){
     AtonDriveRamp(8,100);
     toggleWrist();
 
-    AtonDriveRamp(-3,40);
-    AtonTurn((Nine/2));
-    AtonDriveRamp(-28,100);
+    AtonDriveRamp(-2,40);
+    AtonTurn(5.5);
+    AtonDriveRamp(-26,100);
     stopDriveBrake();
 }
 
@@ -166,4 +166,77 @@ void Skills(){
     wait(500);
 
     AtonDriveRamp(-12,100);
+
+    
+    /*TimeAutoDrive(1000,12);
+    AtonDriveRamp(8,100);
+    stopDriveHold();
+    AtonTurn(-Nine-1);
+    TimeAutoDrive(1000,12);
+    AtonDriveRamp(10,100);
+    stopDriveHold();*/
     }
+
+void SkillsTwo(){
+    AutoIntakeEnabled = false;
+    AtonDriveRamp(-28,100);
+    wait(500);
+    AtonDriveRamp(25,100);
+
+    TimeAutoDrive(500,40);
+    AtonDriveRamp(-2,20);
+
+    AtonTurn(-Nine-.25);
+    AutoPuncherFiring = true;
+    wait(500);
+
+    //Brain.Screen.newLine();
+    //Brain.Screen.print("start");
+    AtonDriveRamp(-3,80);
+    //Brain.Screen.print("end");
+
+    AutoPuncherFiring = true;
+    wait(800);
+    //AtonTurn(-2);
+    AtonDriveRamp(-8,100);
+    AtonTurn(-1);
+    AtonDriveRamp(60,100);
+
+    AtonTurn(Nine+2);
+
+    AtonDriveRamp(-2,100);
+    TimeAutoDrive(1000,-12);
+    AtonDriveRamp(-8,100);
+
+    TimeAutoDrive(1000,-12);
+    AtonDriveRamp(-6,100);
+    stopDriveHold();
+
+    /*AutoLift(250,50,true);
+    AutoLift(0,50,true);
+    AtonTurn(-4.5);
+    AtonDriveRamp(6,100);
+    AtonTurn(-3);
+    AtonDriveRamp(6,100);
+    toggleWrist();
+    AtonDriveRamp(15,100);
+
+    AtonTurn(4);
+
+    AtonDriveRamp(25,100);
+
+    /*
+    AtonTurn(Nine+2);
+    AtonDriveRamp(-6,100);
+    wait(150);*/
+
+    //
+/*
+    TimeAutoDrive(1000,12);
+    AtonDriveRamp(8,100);
+    stopDriveHold();
+    AtonTurn(-Nine-1);
+    TimeAutoDrive(1000,12);
+    AtonDriveRamp(10,100);
+    stopDriveHold();*/
+}

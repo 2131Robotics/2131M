@@ -90,7 +90,16 @@ void wirstControll(){
         WristMotorConBtnPressed=false;
     }
 }
-
+void wirstControllBall(){
+    if(Controller1.ButtonL2.pressing() && WristMotorConBtnTwoPressed==false){
+        WristMotorConBtnTwoPressed=true;
+        WristMotor.startRotateFor(WristMotorInverted ? 350 : -350,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+        WristMotorInverted=!WristMotorInverted;
+    }
+    if(!Controller1.ButtonL2.pressing() && WristMotorConBtnTwoPressed==true){
+        WristMotorConBtnTwoPressed=false;
+    }
+}
 void intakeControll(){
     if(Controller1.ButtonR1.pressing()) {
         setIntakePower(100);
