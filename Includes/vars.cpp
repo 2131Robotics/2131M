@@ -8,7 +8,7 @@ double sgn(double Var) {
 	return Var;
 }
 
-int modeVar;           //skills toggle variable
+int modeVar = 1;           //skills toggle variable
 int usertoggle;          //usertoggle variable
 int initalize = 0;         //initializing the toggle variable
 
