@@ -50,6 +50,12 @@ void liftControll(int pct=100){
         LiftMotorR.stop(vex::brakeType::hold);
     }
 }
+void releaseClawCont(){
+    if(Controller1.ButtonUp.pressing()){
+        LiftMotorR.rotateTo(250,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+        LiftMotorR.startRotateTo(0,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+    }
+}
 void liftContVPID(){
     //----------------------Lift Controll------------------------//
     if(liftMode > 5)

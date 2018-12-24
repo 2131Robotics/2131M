@@ -36,6 +36,9 @@ void Auto_Intake(){
               AutoPuncherFiring = false;
          }
     }
+    else if(Controller1.ButtonR2.pressing()){
+        setIntakePower(-35);
+    }
     else{
         if(BallInBottom && BallInTop){
             setPuncherPower(0);

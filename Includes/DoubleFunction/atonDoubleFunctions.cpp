@@ -7,6 +7,7 @@ void AutoLift(int degg, int pct, bool wait){
         LiftMotorR.startRotateTo(degg,vex::rotationUnits::deg,pct,vex::velocityUnits::pct);
     }
     LiftMotorR.stop(vex::brakeType::coast);
+    LiftMotorR.stop();
 }
 
 void toggleWrist(){
