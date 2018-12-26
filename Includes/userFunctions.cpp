@@ -9,7 +9,7 @@ void ManualDriveCont(bool Flipped){
 void driveLock(){
     stopDriveHold();
 }
-void DriveCont_LockCont(){
+/*void DriveCont_LockCont(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
         DriveLockConBtnPressed=true;
         DriveLockInverted=!DriveLockInverted;
@@ -27,7 +27,7 @@ void DriveCont_LockCont(){
         setDriveBrakeCoast();
         ManualDriveCont(false);
     }
-}
+}*/
 
 /*void intakeControll(){
     if(Controller1.ButtonR1.pressing()) {

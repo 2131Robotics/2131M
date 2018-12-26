@@ -7,6 +7,43 @@ void RightDriveStop(){
     RightBMotor.stop();
     RightFMotor.stop();
 }
+
+void setDriveBrakeCoast(){
+    LeftBMotor.setStopping(vex::brakeType::coast);
+    RightBMotor.setStopping(vex::brakeType::coast);
+    LeftFMotor.setStopping(vex::brakeType::coast);
+    RightFMotor.setStopping(vex::brakeType::coast);
+}
+void setDriveBrakeBrake(){
+    LeftBMotor.setStopping(vex::brakeType::brake);
+    RightBMotor.setStopping(vex::brakeType::brake);
+    LeftFMotor.setStopping(vex::brakeType::brake);
+    RightFMotor.setStopping(vex::brakeType::brake);
+}
+void setDriveBrakeHold(){
+    LeftBMotor.setStopping(vex::brakeType::hold);
+    RightBMotor.setStopping(vex::brakeType::hold);
+    LeftFMotor.setStopping(vex::brakeType::hold);
+    RightFMotor.setStopping(vex::brakeType::hold);
+}
+void stopDriveCoast(){
+    LeftBMotor.stop(vex::brakeType::coast);
+    RightBMotor.stop(vex::brakeType::coast);
+    LeftFMotor.stop(vex::brakeType::coast);
+    RightFMotor.stop(vex::brakeType::coast);
+}
+void stopDriveBrake(){
+    LeftBMotor.stop(vex::brakeType::brake);
+    RightBMotor.stop(vex::brakeType::brake);
+    LeftFMotor.stop(vex::brakeType::brake);
+    RightFMotor.stop(vex::brakeType::brake);
+}
+void stopDriveHold(){
+    LeftBMotor.stop(vex::brakeType::hold);
+    RightBMotor.stop(vex::brakeType::hold);
+    LeftFMotor.stop(vex::brakeType::hold);
+    RightFMotor.stop(vex::brakeType::hold);
+}
 void setMechLFPower(int pct){
     if(pct==0)   LeftFMotor.stop();
     else{
@@ -47,4 +84,27 @@ void DriveMechPowerSend(int j1,int j2,int j3=0,int j4=0){//left,right,side1,side
         LF-SD,
         RF-SD,
         RF+SD);
+}
+void setDrivePower(int left, int right){
+    setMechLFPower(left);
+    setMechLBPower(left);
+    setMechRFPower(right);
+    setMechRBPower(right);
+}
+////////////////////////////////////////////
+void setIntakePower(int power){
+    IntakeMotor.spin(vex::directionType::fwd, power, vex::velocityUnits::pct);
+}
+void setIntakeautofeedPower(int power){
+    if(power==0)  IntakeMotor.stop(vex::brakeType::brake);
+    else{
+        IntakeMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    }
+}
+
+void setCatapultPower(int power){
+    if(power==0)  CatapultMotor.stop(vex::brakeType::brake);
+    else{
+        CatapultMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    }
 }

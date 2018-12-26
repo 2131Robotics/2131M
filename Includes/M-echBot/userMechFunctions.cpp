@@ -1,9 +1,9 @@
 //------Manual Drive Mech Controll------------//
 void ManualMechDriveCont(){
-    LeftVirtJoy=Controller1.Axis3.value();
-    RightVirtJoy=Controller1.Axis2.value();
-    LeftHorJoy=Controller1.Axis4.value();
-    RightHorJoy=Controller1.Axis1.value();
+    int LeftVirtJoy=Controller1.Axis3.value();
+    int RightVirtJoy=Controller1.Axis2.value();
+    int LeftHorJoy=Controller1.Axis4.value();
+    int RightHorJoy=Controller1.Axis1.value();
 
     if(std::abs(LeftVirtJoy)<5)    LeftVirtJoy=0;
     if(std::abs(RightVirtJoy)<5)    RightVirtJoy=0;
@@ -11,17 +11,16 @@ void ManualMechDriveCont(){
     if(std::abs(RightHorJoy)<15)  RightHorJoy=0;
     
     if(LeftVirtJoy!=0 || RightVirtJoy!=0 || LeftHorJoy!=0 || RightHorJoy!=0){
-        DriveManualControlEnabled=true;
-        DriveMechPowerSend(RightVirtJoy,LeftVirtJoy,RightHorJoy,LeftHorJoy);
+        DriveMechPowerSend(LeftVirtJoy,RightVirtJoy,LeftHorJoy,RightHorJoy);
     }
     else{
-        setMechDrivePower(0,0);//Last loop before disableing; used to release drivemanualcontrol
+        setMechDrivePower(0,0,0,0);//Last loop before disableing; used to release drivemanualcontrol
     }        
 }
 
-void driveLock(){
+/*void driveLock(){
     stopDriveHold();
-}
+}*/
 void DriveCont_LockCont(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
         DriveLockConBtnPressed=true;
@@ -36,4 +35,21 @@ void DriveCont_LockCont(){
         setDriveBrakeCoast();
         ManualMechDriveCont();
     }
+}
+
+void intakeControll(){
+    if(Controller1.ButtonR1.pressing()) {
+        setIntakePower(100);
+    }   
+    else if(Controller1.ButtonR2.pressing()) {
+        setIntakePower(-100);
+    }   
+    else IntakeMotor.stop(vex::brakeType::coast);
+}
+
+void catapultControll(){
+    if(Controller1.ButtonL1.pressing()) {
+        setCatapultPower(100);
+    }  
+    else CatapultMotor.stop(vex::brakeType::coast);
 }
