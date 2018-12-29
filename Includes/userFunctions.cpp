@@ -9,7 +9,7 @@ void ManualDriveCont(bool Flipped){
 void driveLock(){
     stopDriveHold();
 }
-/*void DriveCont_LockCont(){
+void DriveCont_LockCont(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
         DriveLockConBtnPressed=true;
         DriveLockInverted=!DriveLockInverted;
@@ -17,7 +17,7 @@ void driveLock(){
     if(!Controller1.ButtonB.pressing() && DriveLockConBtnPressed==true){
         DriveLockConBtnPressed=false;
     }
-    
+
     if(DriveLockInverted) driveLock();
     else if(!DriveLockInverted && modeVar == 0) {
         setDriveBrakeCoast();
@@ -27,15 +27,15 @@ void driveLock(){
         setDriveBrakeCoast();
         ManualDriveCont(false);
     }
-}*/
-
-/*void intakeControll(){
+}
+/*
+void intakeControll(){
     if(Controller1.ButtonR1.pressing()) {
         setIntakePower(100);
-    }   
+    }
     else if(Controller1.ButtonR2.pressing()) {
         setIntakePower(-100);
-    }   
+    }
     else IntakeMotor.stop(vex::brakeType::coast);
 }*/
 
