@@ -53,3 +53,49 @@ void catapultControll(){
     }  
     else CatapultMotor.stop(vex::brakeType::coast);
 }
+// auto Catapult
+bool AutoCatapultEnabled;
+bool Charged=false;
+int ChargeSenseValue;
+int ChargeMaxValue = 70;
+bool AutoCataFiring=true;
+
+void catapultChargeFire(){
+    ChargeSenseValue = ChargeLightSensor.value(vex::percentUnits::pct);
+
+    if (ChargeSenseValue < ChargeMaxValue) Charged = true;
+	else Charged = false;
+
+    if (Controller1.ButtonL1.pressing() || AutoCataFiring) {
+		setCatapultPower(100);
+		//for aton firing
+		if(AutoCataFiring){
+			//wait till gone
+			vex::task::sleep(500);
+			AutoCataFiring = false;
+			setCatapultPower(0);
+		}
+	}
+
+	else {
+		if(!Charged){
+           setCatapultPower(100); 
+		}
+        if(Charged){
+           setCatapultPower(0);
+           while(!Controller1.ButtonL1.pressing()){} 
+		}
+	}
+
+}
+int AutoCatapult(){
+    AutoCatapultEnabled = true;
+    while(true){
+        while(AutoCatapultEnabled){
+            catapultChargeFire();
+            vex::task::sleep(20);
+        }
+      vex::task::sleep(20);
+    }
+    return 1;
+}
