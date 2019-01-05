@@ -35,6 +35,6 @@ class Ramping{
     }
 };
 
-Ramping LDR(1,3);
-Ramping RDR(1,3);
+Ramping LDR(1,5);
+Ramping RDR(1,5);
 

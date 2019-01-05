@@ -20,17 +20,28 @@ bool FlipperMotorInverted = false;
 bool DriveLockConBtnPressed;
 bool DriveLockInverted = false;
 
+bool DriveDirConBtnPressed;
+bool DriveDirInverted = false;
+
 bool WristMotorConBtnPressed;
 bool WristMotorInverted = false;
 
 bool WristMotorConBtnTwoPressed;
 bool WristMotorInvertedTwo = true;
 
+bool AutoCatapultEnabled;
+
+bool AutoIntakeEnabled = false;
 bool IntakeEnabledBtnPressed;
-bool IntakeEnabledInverted = false;
+bool IntakeEnabledInverted = true;
 bool UserAutoIntakeMode = false;
 bool AutoIndexFiring = false;
 bool AutoPuncherFiring = false;
+
+bool RamEnabledBtnPressed;
+bool RamEnabledInverted;
+bool RamManualEnabled = false;
+bool RamPosEnabled = true;
 
 bool liftButtonWait;
 int liftMode = 1;
@@ -46,4 +57,10 @@ bool JawMotorInverted = false;
 
 //aton vars
 double Nine = 9;
-int Full = 180;
+double NineM = 17.5;
+
+int Full = 18;
+double FullM = NineM*2;
+
+int UP = 90;
+int DOWN = 30;

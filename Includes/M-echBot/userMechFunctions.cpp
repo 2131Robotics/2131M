@@ -1,5 +1,15 @@
 //------Manual Drive Mech Controll------------//
+void IsFippedControll(){
+    if(Controller1.ButtonX.pressing() && DriveDirConBtnPressed==false){
+        DriveDirConBtnPressed=true;
+        DriveDirInverted=!DriveDirInverted;
+    }
+    if(!Controller1.ButtonX.pressing() && DriveDirConBtnPressed==true){
+        DriveDirConBtnPressed=false;
+    }
+}
 void ManualMechDriveCont(){
+    IsFippedControll();
     int LeftVirtJoy=Controller1.Axis3.value();
     int RightVirtJoy=Controller1.Axis2.value();
     int LeftHorJoy=Controller1.Axis4.value();
@@ -11,17 +21,22 @@ void ManualMechDriveCont(){
     if(std::abs(RightHorJoy)<15)  RightHorJoy=0;
     
     if(LeftVirtJoy!=0 || RightVirtJoy!=0 || LeftHorJoy!=0 || RightHorJoy!=0){
+        if(!DriveDirInverted){
         DriveMechPowerSend(LeftVirtJoy,RightVirtJoy,LeftHorJoy,RightHorJoy);
+        }
+        if(DriveDirInverted){
+        DriveMechPowerSend(-RightVirtJoy,-LeftVirtJoy,-RightHorJoy,-LeftHorJoy);
+        }
     }
     else{
         setMechDrivePower(0,0,0,0);//Last loop before disableing; used to release drivemanualcontrol
     }        
 }
 
-/*void driveLock(){
+/*void driveLock(){-
     stopDriveHold();
 }*/
-void DriveCont_LockCont(){
+void DriveCont_LockContM(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
         DriveLockConBtnPressed=true;
         DriveLockInverted=!DriveLockInverted;
@@ -30,7 +45,7 @@ void DriveCont_LockCont(){
         DriveLockConBtnPressed=false;
     }
     
-    if(DriveLockInverted) driveLock();
+    if(DriveLockInverted || Controller1.ButtonL1.pressing()) driveLock();
     else if(!DriveLockInverted) {
         setDriveBrakeCoast();
         ManualMechDriveCont();
@@ -53,49 +68,75 @@ void catapultControll(){
     }  
     else CatapultMotor.stop(vex::brakeType::coast);
 }
-// auto Catapult
-bool AutoCatapultEnabled;
-bool Charged=false;
-int ChargeSenseValue;
-int ChargeMaxValue = 70;
-bool AutoCataFiring=true;
 
-void catapultChargeFire(){
-    ChargeSenseValue = ChargeLightSensor.value(vex::percentUnits::pct);
+void RamRodContMan(){
+    IsFippedControll();
+    
+    if(DriveDirInverted){
 
-    if (ChargeSenseValue < ChargeMaxValue) Charged = true;
-	else Charged = false;
+        IntakeMotor.stop(vex::brakeType::coast);
 
-    if (Controller1.ButtonL1.pressing() || AutoCataFiring) {
-		setCatapultPower(100);
-		//for aton firing
-		if(AutoCataFiring){
-			//wait till gone
-			vex::task::sleep(500);
-			AutoCataFiring = false;
-			setCatapultPower(0);
-		}
-	}
-
-	else {
-		if(!Charged){
-           setCatapultPower(100); 
-		}
-        if(Charged){
-           setCatapultPower(0);
-           while(!Controller1.ButtonL1.pressing()){} 
-		}
-	}
-
-}
-int AutoCatapult(){
-    AutoCatapultEnabled = true;
-    while(true){
-        while(AutoCatapultEnabled){
-            catapultChargeFire();
-            vex::task::sleep(20);
+        if(Controller1.ButtonR1.pressing()) {
+            setRamPower(100);
+            RamManualEnabled = true;
+            RamPosEnabled = false;
         }
-      vex::task::sleep(20);
+        else if(Controller1.ButtonR2.pressing()) {
+            setRamPower(-100);
+            RamManualEnabled = true;
+            RamPosEnabled = false;
+        }
+        else {
+            setRamPower(0);
+            RamManualEnabled = false;
+        }
+
+        if(Controller1.ButtonL2.pressing()){
+            RamPosEnabled = true;
+        }
     }
-    return 1;
+    if(!DriveDirInverted){
+        
+    }
+}
+
+void RamPosControll(){
+        if(Controller1.ButtonL2.pressing() && RamEnabledBtnPressed==false){
+        RamEnabledBtnPressed=true;
+        RamEnabledInverted=!RamEnabledInverted;
+        }
+        if(!Controller1.ButtonL2.pressing() && RamEnabledBtnPressed==true){
+        RamEnabledBtnPressed=false;
+        }
+
+        if(RamEnabledInverted){
+            RamRodPos(250);
+        }
+        if(!RamEnabledInverted){
+            RamRodPos(90);
+        }
+}
+
+void smartRamRodCont(){
+    RamRodContMan();
+    if(RamPosEnabled){
+        RamPosControll();
+    }
+}
+
+void AutoIntakeCont(){
+    if(Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==false){
+        IntakeEnabledBtnPressed=true;
+        IntakeEnabledInverted=!IntakeEnabledInverted;
+    }
+    if(!Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==true){
+        IntakeEnabledBtnPressed=false;
+    }
+    if(IntakeEnabledInverted){ 
+        AutoIntakeEnabled=false;
+        intakeControll();
+    }
+    if(!IntakeEnabledInverted) {
+        vex::task AutoIn(Auto_Intaking);
+    }
 }

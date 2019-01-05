@@ -33,9 +33,7 @@ void AtonDriveRamp(double Distance,int Pct=100,int EndWait=250,int Correction=2)
         vex::task::sleep(1);
     }
     SetDRpower(0,0);
-    while(LDR.Pct!=0 || RDR.Pct!=0){
-        vex::task::sleep(1);
-    }
+
     vex::task::sleep(EndWait);
 }
 
@@ -139,7 +137,7 @@ void AtonGryoTurn(double deg, bool Relitive=true, int correction=10,int LPowerSe
     RightBMotor.stop(vex::brakeType::coast);
     LeftBMotor.stop(vex::brakeType::coast);
 }
-void AtonTurn(double deg,int LPowerSend=25,int RPowerSend=25,int EndWait=500){ //-left,+right
+void AtonTurn(double deg,int LPowerSend=50,int RPowerSend=50,int EndWait=500){ //-left,+right
     int Dir=sgn(deg);
     deg=abs(deg)/12.56;
     LPowerSend=LPowerSend*Dir;

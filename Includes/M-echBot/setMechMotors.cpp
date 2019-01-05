@@ -103,8 +103,19 @@ void setIntakeautofeedPower(int power){
 }
 
 void setCatapultPower(int power){
-    if(power==0)  CatapultMotor.stop(vex::brakeType::brake);
+    if(power==0)  CatapultMotor.stop(vex::brakeType::coast);
     else{
         CatapultMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
     }
+}
+
+void setRamPower(int power){
+    if(power==0)  RamMotor.stop(vex::brakeType::brake);
+    else{
+        RamMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    }
+}
+
+void RamRodPos(int pos, int power=100){
+    RamMotor.startRotateTo(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
 }
