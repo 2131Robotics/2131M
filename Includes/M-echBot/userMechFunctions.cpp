@@ -33,9 +33,6 @@ void ManualMechDriveCont(){
     }        
 }
 
-/*void driveLock(){-
-    stopDriveHold();
-}*/
 void DriveCont_LockContM(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
         DriveLockConBtnPressed=true;
@@ -45,31 +42,57 @@ void DriveCont_LockContM(){
         DriveLockConBtnPressed=false;
     }
     
-    if(DriveLockInverted || Controller1.ButtonL1.pressing()) driveLock();
+    if(DriveLockInverted || (Controller1.ButtonL1.pressing() && DriveDirInverted)) driveLock();
     else if(!DriveLockInverted) {
         setDriveBrakeCoast();
         ManualMechDriveCont();
     }
+    else if(Controller1.ButtonDown.pressing()){
+        PlaceCap();
+    }
 }
 
 void intakeControll(){
-    if(Controller1.ButtonR1.pressing()) {
-        setIntakePower(100);
-    }   
-    else if(Controller1.ButtonR2.pressing()) {
-        setIntakePower(-100);
-    }   
-    else IntakeMotor.stop(vex::brakeType::coast);
+    if(!DriveDirInverted){
+        if(Controller1.ButtonR1.pressing()) {
+            setIntakePower(100);
+        }   
+        else if(Controller1.ButtonR2.pressing()) {
+            setIntakePower(-100);
+        }   
+        else IntakeMotor.stop(vex::brakeType::coast);
+    }
+    else{}
+}
+
+void AutoIntakeCont(){
+    if(Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==false){
+        IntakeEnabledBtnPressed=true;
+        IntakeEnabledInverted=!IntakeEnabledInverted;
+    }
+    if(!Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==true){
+        IntakeEnabledBtnPressed=false;
+    }
+
+    if(IntakeEnabledInverted){ 
+        AutoIntakeEnabled=false;
+        intakeControll();
+    }
+    if(!IntakeEnabledInverted) {
+        vex::task AutoIn(Auto_Intaking);
+    }
 }
 
 void catapultControll(){
-    if(Controller1.ButtonL1.pressing()) {
-        setCatapultPower(100);
-    }  
-    else CatapultMotor.stop(vex::brakeType::coast);
+    if(!DriveDirInverted){
+        if(Controller1.ButtonL1.pressing()) {
+            setCatapultPower(100);
+        }  
+        else CatapultMotor.stop(vex::brakeType::coast);
+    }
 }
 
-void RamRodContMan(){
+/*void RamRodContMan(){
     IsFippedControll();
     
     if(DriveDirInverted){
@@ -122,21 +145,46 @@ void smartRamRodCont(){
     if(RamPosEnabled){
         RamPosControll();
     }
-}
+}*/
 
-void AutoIntakeCont(){
-    if(Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==false){
-        IntakeEnabledBtnPressed=true;
-        IntakeEnabledInverted=!IntakeEnabledInverted;
+void liftManualCont(){
+    IsFippedControll();
+   if(DriveDirInverted){
+
+        IntakeMotor.stop(vex::brakeType::coast);
+
+        if(Controller1.ButtonL1.pressing()) setLiftPower(100);
+        else if(Controller1.ButtonL2.pressing()) setLiftPower(-100);
+        else setLiftPower(0);
     }
-    if(!Controller1.ButtonA.pressing() && IntakeEnabledBtnPressed==true){
-        IntakeEnabledBtnPressed=false;
+    if(!DriveDirInverted){
+        //liftRotateTo(0);
     }
-    if(IntakeEnabledInverted){ 
-        AutoIntakeEnabled=false;
-        intakeControll();
-    }
-    if(!IntakeEnabledInverted) {
-        vex::task AutoIn(Auto_Intaking);
+}
+void wirstControll(){
+    int CCW = -410;
+    int CW = -30;
+    if(WristCalibrated){
+        IsFippedControll();
+        if(DriveDirInverted){
+            if(Controller1.ButtonR2.pressing() && WristMotorConBtnPressed==false){
+                WristMotorConBtnPressed=true;
+                WristMotor.startRotateTo(WristMotorInverted ? CW : CCW,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+                WristMotorInverted=!WristMotorInverted;
+            }
+            if(!Controller1.ButtonR2.pressing() && WristMotorConBtnPressed==true){
+                WristMotorConBtnPressed=false;
+            }
+        }
+        if(!DriveDirInverted){
+            if(Controller1.ButtonL2.pressing() && WristMotorConBtnPressed==false){
+                WristMotorConBtnPressed=true;
+                WristMotor.startRotateTo(WristMotorInverted ? CW : CCW,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
+                WristMotorInverted=!WristMotorInverted;
+            }
+            if(!Controller1.ButtonL2.pressing() && WristMotorConBtnPressed==true){
+                WristMotorConBtnPressed=false;
+            }
+        }
     }
 }

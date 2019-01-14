@@ -1,7 +1,7 @@
 //---------------------Auto Catapult-----------------------//
 bool Charged=false;
 int ChargeSenseValue;
-int ChargeMaxValue = 50;
+int ChargeMaxValue = 5;
 bool AutoCataFiring=true;
 
 void catapultChargeFire(){
@@ -9,7 +9,8 @@ void catapultChargeFire(){
 
     if (ChargeSenseValue < ChargeMaxValue) Charged = true;
 
-    if (Controller1.ButtonL1.pressing()) {
+    if (Controller1.ButtonL1.pressing() && !DriveDirInverted) {
+
 		Charged = false;
 		setCatapultPower(100);
 	}

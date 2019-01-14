@@ -1,66 +1,82 @@
-double abs(double Var) {
-	if (Var < 0)  Var = Var * (-1);
-	return Var;
-}
-double sgn(double Var) {
-	if (Var > 0)   Var = 1;
-	else        Var = -1;
-	return Var;
-}
+/*Math vars*/
+	double abs(double Var) {
+		if (Var < 0)  Var = Var * (-1);
+		return Var;
+	}
+	double sgn(double Var) {
+		if (Var > 0)   Var = 1;
+		else        Var = -1;
+		return Var;
+	}
+/*Old Drive toggle vars*/
+	int modeVar = 1;           //skills toggle variable
+	int usertoggle;          //usertoggle variable
+	int initalize = 0;         //initializing the toggle variable
 
-int modeVar = 1;           //skills toggle variable
-int usertoggle;          //usertoggle variable
-int initalize = 0;         //initializing the toggle variable
+/*Drive vars*/
+	bool DriveRampingEnabled;
+	bool MechDriveRampingEnabled;
 
-bool DriveRampingEnabled;
+	bool DriveLockConBtnPressed;
+	bool DriveLockInverted = false;
 
-bool FlipperMotorConBtnPressed;
-bool FlipperMotorInverted = false;
+	bool DriveDirConBtnPressed;
+	bool DriveDirInverted = false;
 
-bool DriveLockConBtnPressed;
-bool DriveLockInverted = false;
+/*Flipper vars*/
+	bool FlipperMotorConBtnPressed;
+	bool FlipperMotorInverted = false;
 
-bool DriveDirConBtnPressed;
-bool DriveDirInverted = false;
+/*Wrist vars*/
+	bool WristMotorConBtnPressed;
+	bool WristMotorInverted = false;
+	bool WristCalibrated=false;
 
-bool WristMotorConBtnPressed;
-bool WristMotorInverted = false;
+	bool WristMotorConBtnTwoPressed;
+	bool WristMotorInvertedTwo = true;
 
-bool WristMotorConBtnTwoPressed;
-bool WristMotorInvertedTwo = true;
+/*Catapult vars*/
+	bool AutoCatapultEnabled;
 
-bool AutoCatapultEnabled;
+/*Intake vars*/
+	bool AutoIntakeEnabled = false;
 
-bool AutoIntakeEnabled = false;
-bool IntakeEnabledBtnPressed;
-bool IntakeEnabledInverted = true;
-bool UserAutoIntakeMode = false;
-bool AutoIndexFiring = false;
-bool AutoPuncherFiring = false;
+	bool IntakeEnabledBtnPressed;
+	bool IntakeEnabledInverted = true;
+	bool UserAutoIntakeMode = false;
 
-bool RamEnabledBtnPressed;
-bool RamEnabledInverted;
-bool RamManualEnabled = false;
-bool RamPosEnabled = true;
+/*Index vars*/
+	bool AutoIndexFiring = false;
 
-bool liftButtonWait;
-int liftMode = 1;
-int PIDliftUserCpower = 100;
+/*Puncher vars*/
+	bool AutoPuncherFiring = false;
 
-bool jawButtonWait;
-int jawMode = 1;
-int jawUserCpower = 100;
+/*Ram Rod vars*/
+	bool RamEnabledBtnPressed;
+	bool RamEnabledInverted;
+	bool RamManualEnabled = false;
+	bool RamPosEnabled = true;
 
-bool JawMotorConBtnPressed;
-bool JawMotorInverted = false;
+/*Lift vars*/
+	bool liftButtonWait;
+	int liftMode = 1;
+	int PIDliftUserCpower = 100;
+
+/*Jaw vars*/
+	bool jawButtonWait;
+	int jawMode = 1;
+	int jawUserCpower = 100;
+
+	bool JawMotorConBtnPressed;
+	bool JawMotorInverted = false;
 
 
-//aton vars
-double Nine = 9;
-double NineM = 17.5;
+/*Aton vars*/
+	double Nine = 9;
+	double NineM = 17.5;
 
-int Full = 18;
-double FullM = NineM*2;
+	int Full = 18;
+	double FullM = NineM*2;
 
-int UP = 90;
-int DOWN = 30;
+	int UP = 90;
+	int DOWN = 30;

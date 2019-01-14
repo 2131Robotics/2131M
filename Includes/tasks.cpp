@@ -12,11 +12,8 @@ int Drive_Ramping(){
 int Auto_Intaking(){
     AutoIntakeEnabled = true;
     while(AutoIntakeEnabled){
-        while(AutoIntakeEnabled){
-            Auto_Intake();
-            vex::task::sleep(20);
-        }
-      vex::task::sleep(20);
+        Auto_Intake();
+        vex::task::sleep(20);
     }
     return 1;
 }
@@ -24,11 +21,8 @@ int Auto_Intaking(){
 int AutoCatapult(){
     AutoCatapultEnabled = true;
     while(AutoCatapultEnabled){
-        while(AutoCatapultEnabled){
-            catapultChargeFire();
-            vex::task::sleep(20);
-        }
-      vex::task::sleep(20);
+        catapultChargeFire();
+        vex::task::sleep(20);
     }
     return 1;
 }
@@ -36,11 +30,20 @@ int AutoCatapult(){
 int ControllerScreen(){
     Brain.Screen.render(true,false);
     while(true){
-        Brain.Screen.newLine();
-        Brain.Screen.print(DriveDirInverted);
+        //Brain.Screen.newLine();
+        Brain.Screen.print(IntakeEnabledInverted);
         Brain.Screen.render();
-        Controller1.Screen.print(Charged);
+        //Controller1.Screen.print(Charged);
         vex::task::sleep(20);
-        
     }
+}
+
+int UserCleanUp(){
+    while(!WristCalibrated){
+        wristCal();
+        WristMotor.resetRotation();
+        vex::task::sleep(20);
+    }
+    WristMotor.resetRotation();
+    return 1;
 }

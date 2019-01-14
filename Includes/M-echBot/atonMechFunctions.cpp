@@ -1,17 +1,24 @@
-void AtonSlide(double Distance,int Pct=100,int EndWait=250,int Correction=2){
-    //calculate distince using inch
-    double WheelCir=4*3.14159265358979323846264338327950288419716939937510582097494459237816406286208998628034253421170679;
-    double Direction=sgn(Distance);
+void AtonSlide(double Distance,int Pct=100,int EndWait=500,int Correction=2){
+    DriveRampingEnabled=false; //stop other ramping task to avoid conflicting
+    vex::task AtonMechDrive(Mech_Drive_Ramping);
+
+    double WheelCir=4*3.14159265358979323846264338327950288419716;
     double Rev= std::abs(Distance)/WheelCir;
-     int LPowerSend=0;
-     int RPowerSend=0;
+
+    //calculate direction and set L & R PowerSend
+    double Direction=sgn(Distance);
+
+    int LPowerSend=0;
+    int RPowerSend=0;
 	//clear enc
     LeftBMotor.resetRotation();
     RightFMotor.resetRotation();
+    LeftFMotor.resetRotation();
+    RightBMotor.resetRotation();
 	//is it there yet?
     while(std::abs(RightBMotor.rotation(vex::rotationUnits::rev))<std::abs(Rev)){
         double LMotorEncValue=LeftFMotor.rotation(vex::rotationUnits::deg);
-        double RMotorEncValue=RightFMotor.rotation(vex::rotationUnits::deg);
+        double RMotorEncValue=RightBMotor.rotation(vex::rotationUnits::deg);
 		//straiten
         if(std::abs(LMotorEncValue)>std::abs(RMotorEncValue)){
             LPowerSend=Pct-Correction;
@@ -29,26 +36,23 @@ void AtonSlide(double Distance,int Pct=100,int EndWait=250,int Correction=2){
         LPowerSend=LPowerSend*Direction;
         RPowerSend=RPowerSend*Direction;
 		//send to SetDRpower
-        setMechLFPower(LPowerSend);
-        setMechLBPower(-LPowerSend);
-        setMechRFPower(-RPowerSend);
-        setMechRBPower(RPowerSend);
+        SetDRMpower(LPowerSend,RPowerSend);
 
         vex::task::sleep(1);
     }
 
-    setMechLFPower(0);
-    setMechLBPower(0);
-    setMechRFPower(0);
-    setMechRBPower(0);
+    SetDRMpower(0,0);
     vex::task::sleep(EndWait);
+    
+    MechDriveRampingEnabled = false;
+    vex::task AtonDrive(Drive_Ramping);
 }
 
-void autoRamFlip(int time=800){
+/*void autoRamFlip(int time=800){
     RamRodPos(250);
     wait(time);
     RamRodPos(100);
-}
+}*/
 void SlideRecon(int time, int power, int dir){
     DriveRampingEnabled=false;
     setMechLFPower(power*dir);
@@ -62,5 +66,6 @@ void SlideRecon(int time, int power, int dir){
     setMechLBPower(0);
     setMechRFPower(0);
     setMechRBPower(0);
+
     vex::task AtonDrive(Drive_Ramping);
 }

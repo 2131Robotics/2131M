@@ -74,6 +74,22 @@ void setMechDrivePower(int LF,int LB,int RF,int RB){
     setMechRFPower(RF);
     setMechRBPower(RB);
 }
+
+//---------Mech Drive Ramping Task--------//
+int Mech_Drive_Ramping(){
+    MechDriveRampingEnabled=true;
+    while(MechDriveRampingEnabled){
+        LFDR.TaskRun();
+        RFDR.TaskRun();
+        LBDR.TaskRun();
+        RBDR.TaskRun();
+        setMechDrivePower(LFDR.Pct,LBDR.Pct,RFDR.Pct,RBDR.Pct);
+        vex::task::sleep(LFDR.ChangeMsec);
+    }
+    return 1;
+}
+//----------------------------------------//
+
 void DriveMechPowerSend(int j1,int j2,int j3=0,int j4=0){//left,right,side1,side2
     int LF=j1;//left
     int RF=j2;//right
@@ -110,12 +126,41 @@ void setCatapultPower(int power){
 }
 
 void setRamPower(int power){
-    if(power==0)  RamMotor.stop(vex::brakeType::brake);
+    /*if(power==0)  RamMotor.stop(vex::brakeType::brake);
     else{
         RamMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
-    }
+    }*/
 }
 
 void RamRodPos(int pos, int power=100){
-    RamMotor.startRotateTo(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
+    //RamMotor.startRotateTo(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
+}
+
+void setLiftPower(int power){
+    if(power==0)  LiftMotor.stop(vex::brakeType::brake);
+    else{
+        LiftMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    }
+}
+void liftRotateTo(int pos, int power=100){
+    LiftMotor.startRotateTo(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
+    LiftMotor.setStopping(vex::brakeType::coast);
+}
+void liftRotateFor(int pos, int power=100){
+    LiftMotor.startRotateFor(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
+    LiftMotor.setStopping(vex::brakeType::coast);
+}
+void setWristPower(int power){
+    if(power==0)  WristMotor.stop(vex::brakeType::brake);
+    else{
+        WristMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+    }
+}
+//-----------------------------//
+void DI(int Lpower,int Rpower){
+    LDR.RequestedPct=Lpower;
+    RDR.RequestedPct=Rpower;
+    LDR.Pct=Lpower;
+    RDR.Pct=Rpower;
+    setDrivePower(LDR.Pct,RDR.Pct);
 }
