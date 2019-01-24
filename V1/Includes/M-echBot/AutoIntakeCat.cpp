@@ -1,7 +1,7 @@
 //---------------------Auto Catapult-----------------------//
 bool Charged=false;
 int ChargeSenseValue;
-int ChargeMaxValue = 5;
+int ChargeMaxValue = 30;
 bool AutoCataFiring=true;
 
 void catapultChargeFire(){
@@ -11,6 +11,8 @@ void catapultChargeFire(){
 
     if (Controller1.ButtonL1.pressing() && !DriveDirInverted) {
 
+		DriveBrakeType = vex::brakeType::hold;
+		setMechDrivePower(0,0,0,0);
 		Charged = false;
 		setCatapultPower(100);
 	}
@@ -18,13 +20,15 @@ void catapultChargeFire(){
 		setCatapultPower(100);
 		
 		//wait till gone
-		vex::task::sleep(700);
+		vex::task::sleep(900);
 		AutoCataFiring = false;
 		setCatapultPower(0);
 		Charged = false;
 	}
 
 	else {
+		DriveBrakeType = vex::brakeType::coast;
+
 		if(!Charged){
 			AutoIntakeEnabled = false;
         	setCatapultPower(100); 

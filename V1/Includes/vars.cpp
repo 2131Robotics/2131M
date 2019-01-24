@@ -61,6 +61,7 @@
 	bool liftButtonWait;
 	int liftMode = 1;
 	int PIDliftUserCpower = 100;
+	bool liftDeployed = false;
 
 /*Jaw vars*/
 	bool jawButtonWait;
@@ -80,3 +81,5 @@
 
 	int UP = 90;
 	int DOWN = 30;
+
+vex::brakeType DriveBrakeType=vex::brakeType::coast;

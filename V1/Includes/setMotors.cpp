@@ -1,7 +1,7 @@
-Ramping LFDR(1,5);
-Ramping RFDR(1,5);
-Ramping LBDR(1,5);
-Ramping RBDR(1,5);
+Ramping LFDR(1,8);
+Ramping RFDR(1,8);
+Ramping LBDR(1,8);
+Ramping RBDR(1,8);
 
 void SetDRMpower(int Lpower,int Rpower){ //DMR
     LFDR.RequestedPct = Lpower;

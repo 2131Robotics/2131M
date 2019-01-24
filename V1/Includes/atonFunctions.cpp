@@ -9,7 +9,7 @@ void AtonDriveRamp(double Distance,int Pct=100,int EndWait=250,int Correction=2)
     LeftBMotor.resetRotation();
     RightBMotor.resetRotation();
 	//is it there yet?
-    while(std::abs(RightBMotor.rotation(vex::rotationUnits::rev))<std::abs(Rev)){
+    while(std::abs(RightBMotor.rotation(vex::rotationUnits::rev))<std::abs(Distance)){
         double LMotorEncValue=LeftBMotor.rotation(vex::rotationUnits::deg);
         double RMotorEncValue=RightBMotor.rotation(vex::rotationUnits::deg);
 		//straiten

@@ -1,5 +1,5 @@
 //------------------Drive voids----------------------//
-void LeftDriveStop(){
+/*void LeftDriveStop(){
     LeftBMotor.stop();
     LeftFMotor.stop();
 }
@@ -43,27 +43,27 @@ void stopDriveHold(){
     RightBMotor.stop(vex::brakeType::hold);
     LeftFMotor.stop(vex::brakeType::hold);
     RightFMotor.stop(vex::brakeType::hold);
-}
+}*/
 void setMechLFPower(int pct){
-    if(pct==0)   LeftFMotor.stop();
+    if(pct==0)   LeftFMotor.stop(DriveBrakeType);
     else{
         LeftFMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
 }
 void setMechLBPower(int pct){
-    if(pct==0)   LeftBMotor.stop();
+    if(pct==0)   LeftBMotor.stop(DriveBrakeType);
     else{
         LeftBMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
 }
 void setMechRFPower(int pct){
-    if(pct==0)   RightFMotor.stop();
+    if(pct==0)   RightFMotor.stop(DriveBrakeType);
     else{
         RightFMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
 }
 void setMechRBPower(int pct){
-    if(pct==0)   RightBMotor.stop();
+    if(pct==0)   RightBMotor.stop(DriveBrakeType);
     else{
         RightBMotor.spin(vex::directionType::fwd,pct,vex::velocityUnits::pct);
     }
@@ -144,11 +144,11 @@ void setLiftPower(int power){
 }
 void liftRotateTo(int pos, int power=100){
     LiftMotor.startRotateTo(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
-    LiftMotor.setStopping(vex::brakeType::coast);
+    LiftMotor.setStopping(vex::brakeType::brake);
 }
 void liftRotateFor(int pos, int power=100){
     LiftMotor.startRotateFor(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
-    LiftMotor.setStopping(vex::brakeType::coast);
+    LiftMotor.setStopping(vex::brakeType::brake);
 }
 void setWristPower(int power){
     if(power==0)  WristMotor.stop(vex::brakeType::brake);

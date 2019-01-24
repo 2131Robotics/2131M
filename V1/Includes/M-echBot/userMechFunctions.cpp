@@ -1,5 +1,5 @@
 //------Manual Drive Mech Controll------------//
-void IsFippedControll(){
+void IsDriveFippedControll(){
     if(Controller1.ButtonX.pressing() && DriveDirConBtnPressed==false){
         DriveDirConBtnPressed=true;
         DriveDirInverted=!DriveDirInverted;
@@ -8,8 +8,13 @@ void IsFippedControll(){
         DriveDirConBtnPressed=false;
     }
 }
+void MechDriveLock(){
+    DriveBrakeType = vex::brakeType::hold;
+    setMechDrivePower(0,0,0,0);
+
+}
 void ManualMechDriveCont(){
-    IsFippedControll();
+    IsDriveFippedControll();
     int LeftVirtJoy=Controller1.Axis3.value();
     int RightVirtJoy=Controller1.Axis2.value();
     int LeftHorJoy=Controller1.Axis4.value();
@@ -22,16 +27,26 @@ void ManualMechDriveCont(){
     
     if(LeftVirtJoy!=0 || RightVirtJoy!=0 || LeftHorJoy!=0 || RightHorJoy!=0){
         if(!DriveDirInverted){
-        DriveMechPowerSend(LeftVirtJoy,RightVirtJoy,LeftHorJoy,RightHorJoy);
+            // vex::task AutoCat(AutoCatapult);
+            DriveMechPowerSend(LeftVirtJoy,RightVirtJoy,LeftHorJoy,RightHorJoy);
         }
         if(DriveDirInverted){
-        DriveMechPowerSend(-RightVirtJoy,-LeftVirtJoy,-RightHorJoy,-LeftHorJoy);
+            DriveMechPowerSend(-RightVirtJoy,-LeftVirtJoy,-RightHorJoy,-LeftHorJoy);
         }
     }
     else{
         setMechDrivePower(0,0,0,0);//Last loop before disableing; used to release drivemanualcontrol
     }        
 }
+    void PlaceCap(){
+        vex::task AtonDrive(Drive_Ramping);
+        // while(Controller1.Axis3.value()==0 || Controller1.Axis2.value()==0){
+            liftRotateFor(-350,50);
+            AtonDriveRamp(10,50);
+            wait(500);
+            DriveRampingEnabled = false;
+        // }
+    }
 
 void DriveCont_LockContM(){
     if(Controller1.ButtonB.pressing() && DriveLockConBtnPressed==false){
@@ -41,13 +56,13 @@ void DriveCont_LockContM(){
     if(!Controller1.ButtonB.pressing() && DriveLockConBtnPressed==true){
         DriveLockConBtnPressed=false;
     }
-    
-    if(DriveLockInverted || (Controller1.ButtonL1.pressing() && DriveDirInverted)) driveLock();
+
+    if(DriveLockInverted) MechDriveLock();
     else if(!DriveLockInverted) {
-        setDriveBrakeCoast();
+        DriveBrakeType = vex::brakeType::coast;
         ManualMechDriveCont();
     }
-    else if(Controller1.ButtonDown.pressing()){
+    if(Controller1.ButtonDown.pressing()){
         PlaceCap();
     }
 }
@@ -93,7 +108,7 @@ void catapultControll(){
 }
 
 /*void RamRodContMan(){
-    IsFippedControll();
+    IsDriveFippedControll();
     
     if(DriveDirInverted){
 
@@ -148,7 +163,7 @@ void smartRamRodCont(){
 }*/
 
 void liftManualCont(){
-    IsFippedControll();
+    IsDriveFippedControll();
    if(DriveDirInverted){
 
         IntakeMotor.stop(vex::brakeType::coast);
@@ -162,10 +177,10 @@ void liftManualCont(){
     }
 }
 void wirstControll(){
-    int CCW = -410;
+    int CCW = -385;
     int CW = -30;
     if(WristCalibrated){
-        IsFippedControll();
+        IsDriveFippedControll();
         if(DriveDirInverted){
             if(Controller1.ButtonR2.pressing() && WristMotorConBtnPressed==false){
                 WristMotorConBtnPressed=true;

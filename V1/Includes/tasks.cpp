@@ -31,14 +31,14 @@ int ControllerScreen(){
     Brain.Screen.render(true,false);
     while(true){
         //Brain.Screen.newLine();
-        Brain.Screen.print(IntakeEnabledInverted);
+        Brain.Screen.print(DriveDirInverted);
         Brain.Screen.render();
         //Controller1.Screen.print(Charged);
         vex::task::sleep(20);
     }
 }
 
-int UserCleanUp(){
+int WristCal(){
     while(!WristCalibrated){
         wristCal();
         WristMotor.resetRotation();

@@ -2,9 +2,6 @@ void AtonSlide(double Distance,int Pct=100,int EndWait=500,int Correction=2){
     DriveRampingEnabled=false; //stop other ramping task to avoid conflicting
     vex::task AtonMechDrive(Mech_Drive_Ramping);
 
-    double WheelCir=4*3.14159265358979323846264338327950288419716;
-    double Rev= std::abs(Distance)/WheelCir;
-
     //calculate direction and set L & R PowerSend
     double Direction=sgn(Distance);
 
@@ -16,7 +13,7 @@ void AtonSlide(double Distance,int Pct=100,int EndWait=500,int Correction=2){
     LeftFMotor.resetRotation();
     RightBMotor.resetRotation();
 	//is it there yet?
-    while(std::abs(RightBMotor.rotation(vex::rotationUnits::rev))<std::abs(Rev)){
+    while(std::abs(RightBMotor.rotation(vex::rotationUnits::rev))<std::abs(Distance)){
         double LMotorEncValue=LeftFMotor.rotation(vex::rotationUnits::deg);
         double RMotorEncValue=RightBMotor.rotation(vex::rotationUnits::deg);
 		//straiten
@@ -68,4 +65,12 @@ void SlideRecon(int time, int power, int dir){
     setMechRBPower(0);
 
     vex::task AtonDrive(Drive_Ramping);
+}
+
+void toggleWrist(){
+    int CCW = -385;
+    int CW = -30;
+    WristMotor.startRotateTo(WristMotorInverted ? CW : CCW,vex::rotationUnits::deg,100,vex::velocityUnits::pct);    WristMotorInverted=!WristMotorInverted;
+    WristMotorInverted=!WristMotorInverted;
+
 }

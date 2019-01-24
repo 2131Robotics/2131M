@@ -69,7 +69,7 @@ void PotSelectors(){
         test();
     }
     else if(MainSelectValue > 60){
-        if(secSelectValue > 90) Skills();
+        Skills();
     }
     else if(MainSelectValue > 45) {
         if(secSelectValue > 90) OtherBackRed();

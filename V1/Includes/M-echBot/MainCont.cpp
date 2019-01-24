@@ -8,6 +8,8 @@ void PreAutonFun() {
     RightFMotor.setStopping(vex::brakeType::coast);
     RightBMotor.setStopping(vex::brakeType::coast);
     
+    LiftMotor.setStopping(vex::brakeType::brake);
+    
     CatapultMotor.setStopping(vex::brakeType::coast);
     
     LiftMotor.resetRotation();
@@ -19,9 +21,9 @@ void PreAutonFun() {
     RightBMotor.resetRotation();
 }
 void AtonFun() {
-    //vex::task AutoCat(AutoCatapult);
+    vex::task AutoCat(AutoCatapult);
 
-    vex::task AutoIn(Auto_Intaking);
+    //vex::task AutoIn(Auto_Intaking);
     vex::task AtonDrive(Drive_Ramping);
     //vex::task AtonMechDrive(Mech_Drive_Ramping);
     
@@ -36,7 +38,7 @@ void AtonFun() {
 
 void UserContFun() {
 
-    //vex::task AutoCat(AutoCatapult);
+    vex::task AutoCat(AutoCatapult);
     //vex::task AutoIn(Auto_Intaking);
 
     AutoIntakeEnabled = false;
@@ -44,16 +46,13 @@ void UserContFun() {
     MechDriveRampingEnabled=false;
 
     //vex::task Debug(ControllerScreen);
-    vex::task UCleanUp(UserCleanUp);
 
     while (true) {
         DriveCont_LockContM();
         AutoIntakeCont();
         //intakeControll();
         liftManualCont();
-        wirstControll();
-        //smartRamRodCont();
-        catapultControll();
+        //catapultControll();
 
         vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
     }
