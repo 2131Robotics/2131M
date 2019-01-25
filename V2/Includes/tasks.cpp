@@ -63,19 +63,12 @@
             if (TopLightValue < TopBallInMax) BallInTop = true;
             else BallInTop = false;
 
-            if (BallInBottom && BallInTop) {
-                setIntakePower(0);
+            if(AutoIntakeOff){
+                setIntakePower(-5);
+                if(AutoFlipper) setIntakePower(-100);
             }
+            else if (BallInBottom && BallInTop) setIntakePower(-5);
             else setIntakePower(100);
-            /*if (BallInBottom && !BallInTop) {
-                setIntakePower(100);
-            }
-            if (BallInTop && !BallInBottom) {
-                setIntakePower(100);
-            }
-            if (!BallInBottom && !BallInTop) {
-                setIntakePower(100);
-            }*/
         }
 /**/
 /*Background Tasks*/
@@ -92,11 +85,14 @@
         return 1;
     }
     int Auto_Intaking(){
-        AutoIntakeEnabled = true;
-        while(AutoIntakeEnabled){
-            Auto_Intake();
+        AutoIntakeTaskEnabled = true;
+        // AutoIntakeEnabled = true;
+        while(AutoIntakeTaskEnabled){
+            if(AutoIntakeEnabled){Auto_Intake();}
+            else if(!AutoIntakeEnabled){setIntakePower(0);}
             vex::task::sleep(20);
         }
+        setIntakePower(0);
         return 1;
     }
     int AutoCatapult(){
@@ -111,7 +107,7 @@
         Brain.Screen.render(true,false);
         while(true){
             //Brain.Screen.newLine();
-            Brain.Screen.print(DriveDirInverted);
+            Brain.Screen.print(AutoIntakeEnabled);
             Brain.Screen.render();
             //Controller1.Screen.print(Charged);
             vex::task::sleep(20);

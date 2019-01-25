@@ -31,8 +31,10 @@ void PreAutonFun() {
 
 void AtonFun() {
     vex::task AutoCat(AutoCatapult);
-    
-    AutoIntakeEnabled = false;
+    vex::task AutoIn(Auto_Intaking);
+    vex::task Debug(BrainScreenDebug);
+    // AutoIntakeEnabled = false;
+
     vex::task AtonDrive(Drive_Ramping);
 
     LiftMotor.resetRotation();
@@ -52,12 +54,13 @@ void AtonFun() {
 void UserContFun() {
 
     vex::task AutoCat(AutoCatapult);
+    vex::task AutoIn(Auto_Intaking);
 
-    AutoIntakeEnabled = false;
+    // AutoIntakeEnabled = false;
     DriveRampingEnabled=false;
     MechDriveRampingEnabled=false;
-
-    //vex::task Debug(ControllerScreen);
+            AutoIntakeOff = false;
+    //vex::task Debug(BrainScreenDebug);
 
     while (true) {
         DriveCont_LockContM();

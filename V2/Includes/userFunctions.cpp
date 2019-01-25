@@ -95,7 +95,7 @@
             intakeControll();
         }
         if(!IntakeEnabledInverted) {
-            vex::task AutoIn(Auto_Intaking);
+            AutoIntakeEnabled=true;
         }
     }
 /**/

@@ -158,16 +158,16 @@
 /*red*/
     //Normal
         void FrontRed(){
-            vex::task AutoIn(Auto_Intaking);
-            AtonDriveRamp(30,100);  
+            AutoIntakeEnabled = true;
+            AtonDriveRamp(900,100);
             wait(250);
-            AtonDriveRamp(-24,100);
+            AtonDriveRamp(-850,100);
             wait(1);
             TimeAutoDrive(1000,-50);
             wait(500);
-            AtonDriveRamp(3,50);  
+            AtonDriveRamp(50,75);  
             AtonTurn(-NineM+2);
-            AtonDriveRamp(1,40);  
+            AtonDriveRamp(25,75);  
             // SlideRecon(1000, 60, -1);
             // wait(500);
             // AtonSlide(4);
@@ -175,20 +175,24 @@
             AutoCataFiring = true;
             wait(700);
 
-            AtonSlide(-1);
-            AtonDriveRamp(30,100);
+            SlideRecon(300, 50, -1);
+            wait(300);
+            AtonDriveRamp(500,100);
             TimeAutoDrive(800,30);
             // AtonSlide(3);
             // TimeAutoDrive(800,30);
-            AtonDriveRamp(-6,100);
+            AtonDriveRamp(-500,100);
             AtonTurn(NineM+4);
-            AutoIntakeEnabled = false;
-            setIntakePower(-100);
 
-            AtonDriveRamp(9,100);
+            AutoIntakeOff = true;
+            AutoFlip = true;
+
+            AtonDriveRamp(600,100);
+            AutoIntakeOff = false;
+            AutoFlip = false;
+
             AtonTurn(-NineM+4);
             AutoCataFiring = true;
-            setIntakePower(0);
         }
 
         void BackRed(){
@@ -222,33 +226,34 @@
         }
     //Parking
         void ParkingFrontRed(){
-            vex::task AutoIn(Auto_Intaking);
-            AtonDriveRamp(30,100);  
+            AutoIntakeEnabled = true;
+            AtonDriveRamp(900,100);
             wait(250);
-            AtonDriveRamp(-2,100);
+            AtonDriveRamp(-20,75);
             AtonTurn(-NineM+1);
             // AtonSlide(-4);
 
-            AutoIntakeEnabled = false;
-            setIntakePower(-100);
+            AutoIntakeOff = true;
+            AutoFlip = true;
             
-            AtonDriveRamp(15,100);
+            AtonDriveRamp(400,100);
 
-            AtonDriveRamp(-2,100);
+            AtonDriveRamp(-25,75);
 
             AtonTurn(NineM-8);
-            AutoCataFiring = true;
+            AutoFlip = false;
+            AutoIntakeOff = false;
             wait(700);
             liftRotateTo(450);
-            AtonDriveRamp(4,100);
+            AtonDriveRamp(75,75);
             AtonTurn(-NineM+7);
             // AtonSlide(2);
-            AtonDriveRamp(-26,100);
+            AtonDriveRamp(-650,100);
 
             TimeAutoDrive(1300,-15);
-            AtonDriveRamp(-13,100);
+            AtonDriveRamp(-450,100);
             MechDriveLock();
-            AutoIntakeEnabled = false;
+            AutoIntakeOff = true;
             liftRotateTo(450);
         }
 
@@ -262,15 +267,15 @@
         }
     //Other
         void OtherFrontRed(){
-            vex::task AutoIn(Auto_Intaking);
-            TimeAutoDrive(1,-15);
-            AtonDriveRamp(30,100); 
+            AutoIntakeEnabled = true;
+            AtonDriveRamp(900,100);
             MechDriveLock();
+            AutoIntakeOff = true;
             wait(10500);
             DriveBrakeType = vex::brakeType::coast;
             setMechDrivePower(0,0,0,0);
             AtonTurn(-NineM+5);
-            AtonDriveRamp(3,100);
+            AtonDriveRamp(75,75);
             AutoCataFiring = true;
             wait(600);
         }
@@ -306,31 +311,22 @@
 /**/
 /*skills*/
     void Skills(){
-        setIntakePower(100);
-        wait(200);
-        setIntakePower(0);
         AtonDriveRamp(1000,100);
         wait(200);
-        vex::task AutoIn(Auto_Intaking);
+        AutoIntakeEnabled = true;
         wait(200);
-
         AtonDriveRamp(-900,100);
-        //wait(250);        
         AtonTurn(-NineM+5);
-
         AtonDriveRamp(1100,100);
         wait(250); 
-
         SlideRecon(1000, 60, -1);
         wait(500);
         AtonSlide(120,75);
         
         AutoCataFiring = true;
         wait(600);
-
         AtonDriveRamp(300,100);
         wait(100);  
-        // AtonSlide(-70,80);
         SlideRecon(300, 50, -1);
         wait(300);
         AtonDriveRamp(250,100);
@@ -338,24 +334,16 @@
         SlideRecon(500, 60, 1);
         TimeAutoDrive(800,30);
 
-        // wait(600);
-        // AtonDriveRamp(-80,75);
-        // AtonSlide(65);
-        // AtonDriveRamp(200,100);
-        // TimeAutoDrive(800,30);
-
         //-----------2rd Row of Flags--------------//
-        AtonDriveRamp(-950,100);
-
+        AtonDriveRamp(-980,100);
         AtonTurn(NineM-1);
         TimeAutoDrive(800,-50);
         wait(400);
         
-        // AutoIntakeEnabled = false;
-        // setIntakePower(0);
-        AtonDriveRamp(1080,100);
+        AutoIntakeOff = true;
+        AtonDriveRamp(1090,100);
         wait(400);
-        // setIntakePower(100);
+        AutoIntakeOff = false;
         AtonTurn(-NineM+2);
         wait(200);
         // TimeAutoDrive(1200,-75);
@@ -364,8 +352,6 @@
 
         AutoCataFiring = true;
         wait(400);
-        // setIntakePower(100);
-        // vex::task AutoIn(Auto_Intaking);
         AtonDriveRamp(500,100);
         SlideRecon(400, 50, -1);
         AtonDriveRamp(250,100);
@@ -374,72 +360,51 @@
         TimeAutoDrive(800,30);
 
         //-----------3rd Row of Flags--------------//
-
         AtonDriveRamp(-430,100);
         AtonTurn(-NineM+5);
         AtonDriveRamp(-1000,100);
         liftRotateTo(350);
         wait(300);
-        AtonSlide(-350,75);
 
+        AtonSlide(-360,75);
         AutoIntakeEnabled = false;
-        setIntakePower(0);
         AtonDriveRamp(300,100);
         wait(300);
-        setIntakePower(100);
+        AutoIntakeEnabled = true;
         SlideRecon(1000, 60, -1);
         wait(100);
+
         AtonDriveRamp(-200,100);
-
         AtonTurn(NineM+1);
-
         AtonDriveRamp(50,75);
 
         AutoCataFiring = true;
         wait(400);
-
         AtonDriveRamp(300,100);
         wait(100);  
-        // AtonSlide(-70,80);
         SlideRecon(300, 50, -1);
         wait(300);
         AtonDriveRamp(250,100);
         TimeAutoDrive(800,30);
+        SlideRecon(500, 60, 1);
+        TimeAutoDrive(800,30);
 
-        AtonDriveRamp(-1000,100);
+        //-----------Parking------------//
+        AtonDriveRamp(-50,75);
+        AutoCataFiring = true;
+        AtonDriveRamp(-800,100);
         wait(250);
-        AtonSlide(150,75);
+        AtonSlide(-350,75);
         wait(250);
-        AtonDriveRamp(-350,100);
-        AtonTurn(NineM);
-        TimeAutoDrive(1000,-18);
-        AtonDriveRamp(-1500,100);
-        // MechDriveLock();
-        // AtonTurn(NineM-3);
-        // TimeAutoDrive(1000,-15);
-        // AtonDriveRamp(-1200,100);
-        MechDriveLock();
-        AutoIntakeEnabled = false;
 
-        // wait(200);
-        // AtonSlide(-65);
-        // wait(400);
-        // TimeAutoDrive(1200,50);
-        /*
-        AtonDriveRamp(-1,100);
-        AtonSlide(-4);
-        liftRotateTo(450);
-        TimeAutoDrive(1000,50);
-
-        AtonDriveRamp(-48,100);
-        TimeAutoDrive(1000,-15);
-        AtonDriveRamp(-13,100);
+        TimeAutoDrive(800,-5);
+        AtonDriveRamp(-400,100);
         MechDriveLock();
-        AtonTurn(-NineM+4);
-        TimeAutoDrive(1000,-15);
-        AtonDriveRamp(-16,100);
+        AtonTurn(NineM+1);
+        TimeAutoDrive(700,-15);
+        AtonDriveRamp(-500,100);
         MechDriveLock();
-        AutoIntakeEnabled = false;*/
+        AutoIntakeOff = true;
     }
 /**/
 /*Other*/

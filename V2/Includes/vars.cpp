@@ -35,6 +35,8 @@
 
 /*Intake vars*/
 	bool AutoIntakeEnabled = false;
+	bool AutoIntakeTaskEnabled = false;
+	bool AutoIntakeOff = false;
 
 	bool IntakeEnabledBtnPressed;
 	bool IntakeEnabledInverted = true;
