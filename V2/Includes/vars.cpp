@@ -37,13 +37,12 @@
 	bool AutoIntakeEnabled = false;
 	bool AutoIntakeTaskEnabled = false;
 	bool AutoIntakeOff = false;
-
+	bool AutoFlip=false;
+	// bool AutoMan=false;
+	
 	bool IntakeEnabledBtnPressed;
 	bool IntakeEnabledInverted = true;
 	bool UserAutoIntakeMode = false;
-
-/*Index vars*/
-	bool AutoIndexFiring = false;
 
 /*Puncher vars*/
 	bool AutoPuncherFiring = false;
@@ -59,6 +58,8 @@
 	int liftMode = 1;
 	int PIDliftUserCpower = 100;
 	bool liftDeployed = false;
+	bool easyFlipDir = false;
+	bool LiftEEnabledBtnPressed;
 
 /*Lock vars*/
 	bool jawButtonWait;

@@ -4,9 +4,9 @@
 void PreAutonFun() {
     Brain.Screen.render(true,false);
     vex::task SmartPot(WhatAton);
-
+    AutoIntakeEnabled = false;
         //wait for vex to not be a dumb
-    while(MainAtonSelect.value(vex::percentUnits::pct)==0 && SecAtonSelect.value(vex::percentUnits::pct)==0){}
+    while(MainAtonSelect.value(vex::percentUnits::pct)==0 && SecAtonSelect.value(vex::percentUnits::pct)==0 && ChargeLightSensor.value(vex::percentUnits::pct)==0){}
     LeftFMotor.setStopping(vex::brakeType::coast);
     LeftBMotor.setStopping(vex::brakeType::coast);
     RightFMotor.setStopping(vex::brakeType::coast);
@@ -30,10 +30,10 @@ void PreAutonFun() {
 /*---------------------------------------------------------------------------*/
 
 void AtonFun() {
+    while(ChargeLightSensor.value(vex::percentUnits::pct)==0){}
     vex::task AutoCat(AutoCatapult);
     vex::task AutoIn(Auto_Intaking);
-    vex::task Debug(BrainScreenDebug);
-    // AutoIntakeEnabled = false;
+    // vex::task Debug(BrainScreenDebug);
 
     vex::task AtonDrive(Drive_Ramping);
 
@@ -52,7 +52,7 @@ void AtonFun() {
 /*---------------------------------------------------------------------------*/
 
 void UserContFun() {
-
+    while(ChargeLightSensor.value(vex::percentUnits::pct)==0){}
     vex::task AutoCat(AutoCatapult);
     vex::task AutoIn(Auto_Intaking);
 

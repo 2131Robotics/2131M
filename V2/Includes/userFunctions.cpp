@@ -40,12 +40,12 @@
     }
         void PlaceCap(){
             vex::task AtonDrive(Drive_Ramping);
-            // while(Controller1.Axis3.value()==0 || Controller1.Axis2.value()==0){
                 liftRotateFor(-350,50);
                 AtonDriveRamp(10,50);
-                wait(500);
+                wait(300);
+                LockRotateFor(-50);
+                AtonDriveRamp(10,50);
                 DriveRampingEnabled = false;
-            // }
         }
 
     void DriveCont_LockContM(){
@@ -91,11 +91,11 @@
         }
 
         if(IntakeEnabledInverted){ 
-            AutoIntakeEnabled=false;
+            AutoIntakeTaskEnabled=false;
             intakeControll();
         }
         if(!IntakeEnabledInverted) {
-            AutoIntakeEnabled=true;
+            vex::task AutoIn(Auto_Intaking);
         }
     }
 /**/
@@ -112,20 +112,32 @@
 //------Manual Lift Controll------------//
     void liftManualCont(){
         IsDriveFippedControll();
-    if(DriveDirInverted){
 
+            if(Controller1.ButtonL2.pressing() && LiftEEnabledBtnPressed==false){
+                LiftEEnabledBtnPressed=true;
+                if(!DriveDirInverted) liftRotateTo(easyFlipDir ? 0 : 350);
+                easyFlipDir=!easyFlipDir;
+            }
+            if(!Controller1.ButtonL2.pressing() && LiftEEnabledBtnPressed==true){
+                LiftEEnabledBtnPressed=false;
+            }
+
+        if(DriveDirInverted){
             IntakeMotor.stop(IntakeBrakeType);
 
             if(Controller1.ButtonL1.pressing()) setLiftPower(100);
             else if(Controller1.ButtonL2.pressing()) setLiftPower(-100);
             else setLiftPower(0);
+            easyFlipDir = false;
         }
-        if(!DriveDirInverted){
-            //liftRotateTo(0);
-        }
+        /*if(!DriveDirInverted){
+            if(easyFlipDir==false) liftRotateTo(easyFlipDir ? 0 : 350);
+            if(easyFlipDir==true) liftRotateTo(350);
+            
+        }*/
     }
 /**/
-//------Manual Lift Controll------------//
+//------Lock Controll------------//
     void LockJawCont(){
         IsDriveFippedControll();
         // double LockPos = LockMotor.rotation(vex::rotationUnits::deg);

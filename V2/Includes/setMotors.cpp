@@ -93,6 +93,6 @@
     }
     void LockRotateFor(int pos, int power=100){
         LockMotor.startRotateFor(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
-        LockMotor.setStopping(LockBrakeType);
+        LockMotor.stop(LockBrakeType);
     }
 /**/
