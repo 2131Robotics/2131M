@@ -35,7 +35,7 @@
                     setCatapultPower(100); 
                 }
                 if(Charged){
-                    //AutoIntakeEnabled = true;
+                    // AutoIntakeEnabled = true;
                     setCatapultPower(0);
                 }
             }
@@ -76,6 +76,26 @@
                 else setIntakePower(100);
             // }
         }
+    //---------------------Wrist-----------------------//
+        void wristCall(){
+            int liftUp = 400;
+            int wristCalTIme = 500;
+            setLiftPower(100);
+            vex::task::sleep(liftUp);
+            setLiftPower(0);
+
+            setWristPower(100);
+            vex::task::sleep(wristCalTIme);
+            setWristPower(0);
+
+            setLiftPower(-100);
+            vex::task::sleep(liftUp);
+            setLiftPower(0);
+            WristCalibrated = true;
+        }
+        /*void WristControll{
+            while()
+        }*/
 /**/
 /*Background Tasks*/
     int Drive_Ramping(){
@@ -95,7 +115,7 @@
         // AutoIntakeEnabled = true;
         while(AutoIntakeTaskEnabled){
             if(AutoIntakeEnabled){Auto_Intake();}
-            else if(!AutoIntakeEnabled){setIntakePower(0);}
+            else if(!AutoIntakeEnabled){/*intakeControll();*/}
             vex::task::sleep(20);
         }
         setIntakePower(0);
@@ -118,5 +138,14 @@
             //Controller1.Screen.print(Charged);
             vex::task::sleep(20);
         }
+    }
+    int WristCal(){
+        while(!WristCalibrated){
+            wristCall();
+            WristMotor.resetRotation();
+            vex::task::sleep(20);
+        }
+        WristMotor.resetRotation();
+        return 1;
     }
 /**/

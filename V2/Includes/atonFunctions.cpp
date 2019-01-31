@@ -2,6 +2,13 @@
     void wait(int time){
         vex::task::sleep(time);
     }
+    void toggleWrist(){
+        int spinFor=800;
+        setWristPower(WristMotorInverted ? 100 : -100);
+        vex::task::sleep(spinFor);
+        setWristPower(0);
+        WristMotorInverted=!WristMotorInverted;
+    }
 /**/
 //------Aton Drive Functions------------//
     void AtonDriveRamp(double Distance,int Pct=100,int EndWait=250,int Correction=2){

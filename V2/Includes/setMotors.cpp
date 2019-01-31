@@ -46,7 +46,6 @@
         setMechRFPower(right);
         setMechRBPower(right);
     }
-    
 /**/
 /*Intake Motor Power Sends*/
     void setIntakePower(int power){
@@ -94,5 +93,13 @@
     void LockRotateFor(int pos, int power=100){
         LockMotor.startRotateFor(pos,vex::rotationUnits::deg,power,vex::velocityUnits::pct);
         LockMotor.stop(LockBrakeType);
+    }
+/**/
+/*Wrist Motor Power Sends*/
+    void setWristPower(int power){
+        if(power==0)  WristMotor.stop(WristBrakeType);
+        else{
+            WristMotor.spin(vex::directionType::fwd,power,vex::velocityUnits::pct);
+        }
     }
 /**/

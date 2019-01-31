@@ -23,12 +23,13 @@
 	bool FlipperMotorInverted = false;
 
 /*Wrist vars*/
+	bool WristTaskEnabled;
 	bool WristMotorConBtnPressed;
 	bool WristMotorInverted = false;
 	bool WristCalibrated=false;
-
-	bool WristMotorConBtnTwoPressed;
-	bool WristMotorInvertedTwo = true;
+	bool wristRan=true;
+	//bool WristMotorConBtnTwoPressed;
+	//bool WristMotorInvertedTwo = true;
 
 /*Catapult vars*/
 	bool AutoCatapultEnabled;
@@ -58,7 +59,7 @@
 	int liftMode = 1;
 	int PIDliftUserCpower = 100;
 	bool liftDeployed = false;
-	bool easyFlipDir = false;
+	//bool easyFlipDir = false;
 	bool LiftEEnabledBtnPressed;
 
 /*Lock vars*/
@@ -84,3 +85,4 @@
 	vex::brakeType CatapultBrakeType=vex::brakeType::coast;
 	vex::brakeType IntakeBrakeType=vex::brakeType::coast;
 	vex::brakeType LockBrakeType=vex::brakeType::coast;
+	vex::brakeType WristBrakeType=vex::brakeType::brake;

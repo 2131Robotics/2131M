@@ -1,10 +1,8 @@
 /*testing*/
     void test(){
-        setIntakePower(100);
-        wait(5000);
-        setIntakePower(0);
-        wait(5000);
-        vex::task AutoIn(Auto_Intaking);
+        toggleWrist();
+        wait(500);
+        toggleWrist();
         // TimeAutoDrive(10000,-1);
         // AutoIntakeEnabled = false;
         // wait(500);
@@ -363,17 +361,18 @@
 /**/
 /*skills*/
     void Skills(){
+        vex::task WristCalibration(WristCal);
         AtonDriveRamp(1000,100);
         wait(200);
         AutoIntakeEnabled = true;
         wait(200);
         AtonDriveRamp(-900,100);
         AtonTurn(-NineM+5);
-        AtonDriveRamp(1100,100);
+        AtonDriveRamp(1000,100);
         wait(250); 
         SlideRecon(1100, 60, -1);
         wait(500);
-        AtonSlide(120,75);
+        AtonSlide(100,75);
         
         AutoCataFiring = true;
         wait(600);
@@ -393,15 +392,15 @@
         wait(400);
         
         AutoIntakeOff = true;
-        AtonDriveRamp(1000,100);
+        AtonDriveRamp(910,100);
         wait(200);
         AutoIntakeOff = false;
         wait(200);
-        AtonDriveRamp(-20,100);
+        AtonDriveRamp(-40,100);
         AutoIntakeOff = false;
         AtonTurn(-NineM+5);
         wait(200);
-        AtonDriveRamp(40,75);
+        AtonDriveRamp(30,75);
 
         AutoCataFiring = true;
         wait(400);
@@ -421,21 +420,23 @@
         AtonTurn(-NineM+5);
         AtonDriveRamp(-1000,100);
         liftRotateTo(350);
+        toggleWrist();
         wait(300);
 
         AtonSlide(-360,75);
+        liftRotateTo(0);
         wait(200);
         AutoIntakeOff = true;
-        AtonDriveRamp(350,100);
+        AtonDriveRamp(360,100);
         wait(300);
         AutoIntakeOff = false;
         SlideRecon(1000, 60, -1);
         wait(100);
 
-        AtonDriveRamp(-150,100);
+        AtonDriveRamp(-300,100);
         AtonTurn(NineM);
         AtonDriveRamp(50,75);
-
+        liftRotateTo(350);
         AutoCataFiring = true;
         wait(400);
         AtonDriveRamp(300,100);
@@ -448,10 +449,10 @@
         TimeAutoDrive(800,30);
 
         //-----------Parking------------//
-        AtonDriveRamp(-50,75);
+        AtonDriveRamp(-65,75);
         AutoCataFiring = true;
         wait(500);
-        AtonDriveRamp(-800,100);
+        AtonDriveRamp(-780,100);
         wait(300);
         AtonSlide(-310,75);
         wait(250);

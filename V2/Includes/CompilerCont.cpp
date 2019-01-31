@@ -55,6 +55,8 @@ void UserContFun() {
     while(ChargeLightSensor.value(vex::percentUnits::pct)==0){}
     vex::task AutoCat(AutoCatapult);
     vex::task AutoIn(Auto_Intaking);
+    vex::task WristCalibration(WristCal);
+    vex::task Wrist(WristTask);
 
     // AutoIntakeEnabled = false;
     DriveRampingEnabled=false;
@@ -67,7 +69,7 @@ void UserContFun() {
         AutoIntakeCont();
         //intakeControll();
         liftManualCont();
-        LockJawCont();
+        //wirstControll();
         //catapultControll();
 
         vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
