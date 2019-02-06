@@ -13,26 +13,18 @@
 /*blue*/
     //Normal
         void FrontBlue(){
+            vex::task WristCalibration(WristCal);
             AutoIntakeEnabled = true;
-            AutoIntakeOff = false;
-            wait(300);
-            // AutoMan=true;
 
-            AtonDriveRamp(800,100); 
-            // AutoMan=true;
+            AtonDriveRamp(900,75); 
             wait(450);
-            // AutoMan=false;
-            // AutoIntakeOff = false;
+
             AtonDriveRamp(-800,100);
             wait(1);
             TimeAutoDrive(350,-50);
             wait(50);
             AtonDriveRamp(60,75);  
             AtonTurn(NineM-3);
-            // AtonDriveRamp(25,75);  
-            // SlideRecon(1000, 60, -1);
-            // wait(500);
-            // AtonSlide(4);
 
             AutoCataFiring = true;
             wait(450);
@@ -46,7 +38,7 @@
             SlideRecon(200, -60, 1);
             wait(200);
             AtonDriveRamp(-300,100);
-            AtonTurn(-NineM+1.5);
+            AtonTurn(-NineM+2);
 
             AutoIntakeOff = true;
             AutoFlip = true;
@@ -55,7 +47,7 @@
             AutoFlip = false;
             AutoIntakeOff = false;
 
-            AtonTurn(NineM-3);
+            AtonTurn(NineM-5);
             AutoCataFiring = true;
         }
 
@@ -370,9 +362,10 @@
         AtonTurn(-NineM+5);
         AtonDriveRamp(1000,100);
         wait(250); 
-        SlideRecon(1100, 60, -1);
+        AtonSlide(-50,75);
+        SlideRecon(800, 70, -1);
         wait(500);
-        AtonSlide(100,75);
+        AtonSlide(110,75);
         
         AutoCataFiring = true;
         wait(600);
@@ -396,7 +389,7 @@
         wait(200);
         AutoIntakeOff = false;
         wait(200);
-        AtonDriveRamp(-40,100);
+        AtonDriveRamp(-50,100);
         AutoIntakeOff = false;
         AtonTurn(-NineM+5);
         wait(200);
@@ -404,9 +397,9 @@
 
         AutoCataFiring = true;
         wait(400);
-        AtonDriveRamp(410,100);
+        AtonDriveRamp(420,100);
         wait(100);
-        AtonTurn(-5);
+        AtonTurn(-3);
         wait(300);
         // SlideRecon(400, 50, -1);
         AtonDriveRamp(250,100);
@@ -416,32 +409,37 @@
         wait(200);
 
         //-----------3rd Row of Flags--------------//
-        AtonDriveRamp(-400,100);
+        AtonDriveRamp(-380,100);
         AtonTurn(-NineM+5);
         AtonDriveRamp(-1000,100);
         liftRotateTo(350);
         toggleWrist();
-        wait(300);
-
-        AtonSlide(-360,75);
+        wait(100);
         liftRotateTo(0);
+
+        AtonDriveRamp(70,100);
+        AtonSlide(-370,75);
         wait(200);
         AutoIntakeOff = true;
-        AtonDriveRamp(360,100);
+        AtonDriveRamp(300,100);
         wait(300);
         AutoIntakeOff = false;
         SlideRecon(1000, 60, -1);
         wait(100);
 
-        AtonDriveRamp(-300,100);
-        AtonTurn(NineM);
+        AtonDriveRamp(-750,100);
+        TimeAutoDrive(850,-50);
+        wait(300);
+        AtonDriveRamp(200,100);
+        wait(200);
+        AtonTurn(NineM-3);
         AtonDriveRamp(50,75);
         liftRotateTo(350);
         AutoCataFiring = true;
         wait(400);
         AtonDriveRamp(300,100);
-        wait(100);  
-        SlideRecon(300, 50, -1);
+        wait(100);
+        SlideRecon(450, 50, -1);
         wait(300);
         AtonDriveRamp(250,100);
         TimeAutoDrive(800,30);
@@ -449,12 +447,12 @@
         TimeAutoDrive(800,30);
 
         //-----------Parking------------//
-        AtonDriveRamp(-65,75);
+        AtonDriveRamp(-110,75);
         AutoCataFiring = true;
         wait(500);
-        AtonDriveRamp(-780,100);
+        AtonDriveRamp(-800,100);
         wait(300);
-        AtonSlide(-310,75);
+        AtonSlide(-250,75);
         wait(250);
 
         TimeAutoDrive(500,-8);

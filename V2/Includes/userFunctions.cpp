@@ -38,14 +38,17 @@
             setMechDrivePower(0,0,0,0);//Last loop before disableing; used to release drivemanualcontrol
         }        
     }
-        void PlaceCap(){
-            vex::task AtonDrive(Drive_Ramping);
-                AtonDriveRamp(40,60);
-                vex::task::sleep(100);
-                liftRotateFor(-600,50);
-                vex::task::sleep(300);
-                DriveRampingEnabled = false;
-        }
+    void PlaceCap(){
+        vex::task AtonDrive(Drive_Ramping);
+            AtonDriveRamp(40,60);
+            vex::task::sleep(100);
+            liftRotateFor(-600,50);
+            vex::task::sleep(300);
+            DriveRampingEnabled = false;
+    }
+    void EasyFlip(){
+
+    }
 
     void DriveCont_LockContM(){
         IsDriveFippedControll();
@@ -165,7 +168,7 @@
     }
 /**/
 //------Wrist Controll------------//
-    void wirstControll(){
+    void wirstControll(){ //wrist void task
             int CCW = -300;
             int CW = 10;
             int spinFor = 800;
@@ -174,14 +177,13 @@
             if(DriveDirInverted){
                 if(Controller1.ButtonR1.pressing() && WristMotorConBtnPressed==false){
                     WristMotorConBtnPressed=true;
-                    //WristMotor.startRotateTo(WristMotorInverted ? CW : CCW,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
                     WristMotorInverted=!WristMotorInverted;
-                    //setWristPower(0);
                     wristRan=false;
                 }
                 if(!Controller1.ButtonR1.pressing() && WristMotorConBtnPressed==true){
                     WristMotorConBtnPressed=false;
                 }
+
                 if(!wristRan){
                     setWristPower(WristMotorInverted ? -100 : 100);
                     vex::task::sleep(spinFor);
@@ -193,19 +195,21 @@
             if(!DriveDirInverted){
                 if(Controller1.ButtonL2.pressing() && WristMotorConBtnPressed==false){
                     WristMotorConBtnPressed=true;
-                    //WristMotor.startRotateTo(WristMotorInverted ? CW : CCW,vex::rotationUnits::deg,100,vex::velocityUnits::pct);
                     WristMotorInverted=!WristMotorInverted;
-                    // setWristPower(0);
                     wristRan=false;
                 }
                 if(!Controller1.ButtonL2.pressing() && WristMotorConBtnPressed==true){
                     WristMotorConBtnPressed=false;
                 }
-                if(!wristRan){
-                    setWristPower(WristMotorInverted ? -100 : 100);
-                    vex::task::sleep(spinFor);
-                    setWristPower(0);
 
+                if(!wristRan){ //easy flip
+                    setLiftPower(100);
+                    wait(450);
+                    setWristPower(WristMotorInverted ? -100 : 100);
+                    setLiftPower(-100);
+                    vex::task::sleep(spinFor);
+                    setLiftPower(0);
+                    setWristPower(0);
                     wristRan=true;
                 }
             }

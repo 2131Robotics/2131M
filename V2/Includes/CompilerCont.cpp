@@ -61,8 +61,8 @@ void UserContFun() {
     // AutoIntakeEnabled = false;
     DriveRampingEnabled=false;
     MechDriveRampingEnabled=false;
-            AutoIntakeOff = false;
-    //vex::task Debug(BrainScreenDebug);
+    AutoIntakeOff = false;
+    // vex::task Debug(BrainScreenDebug);
 
     while (true) {
         DriveCont_LockContM();
