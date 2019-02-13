@@ -9,6 +9,16 @@
         setWristPower(0);
         WristMotorInverted=!WristMotorInverted;
     }
+    void FLIP(){
+        setLiftPower(100);
+        wait(450);
+        setWristPower(WristMotorInverted ? -100 : 100);
+        setLiftPower(-100);
+        vex::task::sleep(800);
+        setLiftPower(0);
+        setWristPower(0);
+        wristRan=true;
+    }
 /**/
 //------Aton Drive Functions------------//
     void AtonDriveRamp(double Distance,int Pct=100,int EndWait=250,int Correction=2){
@@ -179,15 +189,32 @@
         DriveBrakeType = vex::brakeType::coast;
     }*/
     //V1
-    void AtonTurn(double deg,int LPowerSend=50,int RPowerSend=50,int EndWait=500){ //-left,+right
+    void AtonTurn(double deg,int LPowerSend=50,int RPowerSend=50,int EndWait=250/*500s*/){ //-left,+right
         int Dir=sgn(deg);
         deg=abs(deg)/12.56;
         LPowerSend=LPowerSend*Dir;
         RPowerSend=RPowerSend*Dir;
-        RightBMotor.resetRotation();
+
         LeftBMotor.resetRotation();
-        while(abs(RightBMotor.rotation(vex::rotationUnits::rev))<abs(deg)){
+        RightBMotor.resetRotation();
+        LeftFMotor.resetRotation();
+        RightFMotor.resetRotation();
+
+        double RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
+        double RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
+        double LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
+        double LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
+        double AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
+
+        while(/*(abs(RightBMotor.rotation(vex::rotationUnits::rev)))*/AbsTurnRotationsAvg <abs(deg)){
             DI(LPowerSend,-RPowerSend);
+
+            RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
+            RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
+            LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
+            LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
+            AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
+
             vex::task::sleep(1);
         }
         DI(0,0);

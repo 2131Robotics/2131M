@@ -38,14 +38,14 @@
             setMechDrivePower(0,0,0,0);//Last loop before disableing; used to release drivemanualcontrol
         }        
     }
-    void PlaceCap(){
+    /*void PlaceCap(){
         vex::task AtonDrive(Drive_Ramping);
             AtonDriveRamp(40,60);
             vex::task::sleep(100);
             liftRotateFor(-600,50);
             vex::task::sleep(300);
             DriveRampingEnabled = false;
-    }
+    }*/
     void EasyFlip(){
 
     }
