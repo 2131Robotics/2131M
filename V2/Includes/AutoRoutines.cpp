@@ -444,8 +444,8 @@
         AtonDriveRamp(-900,100);
             TimeAutoDrive(500,-50);
             wait(150);   
-            AtonDriveRamp(8,75);  
-            AtonTurn(-NineM);
+            AtonDriveRamp(17,75);  
+            AtonTurn(-NineM-.5);
         AtonDriveRamp(1050,100);
         wait(250); 
         
@@ -453,7 +453,7 @@
         wait(600);
         AtonDriveRamp(300,100);
         wait(100);  
-        SlideRecon(300, 50, -1);
+        SlideRecon(320, 50, -1);
         wait(300);
         AtonDriveRamp(250,100);
         TimeAutoDrive(800,30);
@@ -461,7 +461,7 @@
         TimeAutoDrive(500,30);
 
         //-----------2rd Row of Flags--------------//
-        AtonDriveRamp(-1020,100);
+        AtonDriveRamp(-1100,100);
         AtonTurn(NineM-1);
         TimeAutoDrive(800,-50);
         wait(400);
@@ -525,7 +525,7 @@
         wait(200);
         AtonTurn(NineM+1);
         AtonDriveRamp(50,75);
-        liftRotateTo(350);
+        // liftRotateTo(350);
         AutoCataFiring = true;
         wait(400);
         AtonDriveRamp(300,100);

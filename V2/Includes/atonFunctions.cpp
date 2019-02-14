@@ -200,20 +200,20 @@
         LeftFMotor.resetRotation();
         RightFMotor.resetRotation();
 
-        double RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
-        double RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
-        double LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
-        double LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
-        double AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
+        // double RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
+        // double RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
+        // double LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
+        // double LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
+        // double AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
 
-        while(/*(abs(RightBMotor.rotation(vex::rotationUnits::rev)))*/AbsTurnRotationsAvg <abs(deg)){
+        while((abs(RightBMotor.rotation(vex::rotationUnits::rev)))/*AbsTurnRotationsAvg*/ <abs(deg)){
             DI(LPowerSend,-RPowerSend);
 
-            RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
-            RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
-            LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
-            LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
-            AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
+            // RFValue = abs(RightFMotor.rotation(vex::rotationUnits::rev));
+            // RBValue = abs(RightBMotor.rotation(vex::rotationUnits::rev));
+            // LFValue = abs(LeftFMotor.rotation(vex::rotationUnits::rev));
+            // LBValue = abs(LeftBMotor.rotation(vex::rotationUnits::rev));
+            // AbsTurnRotationsAvg = ((RFValue+RBValue+LFValue+LBValue)/4);
 
             vex::task::sleep(1);
         }

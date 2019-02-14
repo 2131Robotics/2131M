@@ -73,7 +73,7 @@
 
 /*Aton vars*/
 	double Nine = 9;
-	double NineM = 15;
+	double NineM = /*15*/17.5;
 	int FullM = NineM*2;
 
 	int UP = 90;
