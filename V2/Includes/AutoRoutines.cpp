@@ -509,13 +509,11 @@
         AtonDriveRamp(-900,100);
             TimeAutoDrive(500,-50);
             wait(150);   
-<<<<<<< HEAD
             AtonDriveRamp(8,75);  
             AtonTurn(-NineM);
             TimeAutoDrive(800,-50);
             wait(200);
         AtonDriveRamp(1600,100);
-=======
         wait(250); 
         
         AutoCataFiring = true;
