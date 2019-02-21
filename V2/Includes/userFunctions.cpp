@@ -171,7 +171,7 @@
     void wirstControll(){ //wrist void task
             int CCW = -300;
             int CW = 10;
-            int spinFor = 800;
+            int spinFor = 700;
         if(WristCalibrated){
             IsDriveFippedControll();
             if(DriveDirInverted){
