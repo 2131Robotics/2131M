@@ -141,7 +141,7 @@
             else if(Controller1.ButtonL2.pressing()) setLiftPower(-100);
             //easyFlipDir = false;
             else if(Controller1.ButtonDown.pressing()){
-                setLiftPower(-40);
+                setLiftPower(-45);
             }
             else setLiftPower(0);
         }

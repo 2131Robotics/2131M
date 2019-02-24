@@ -29,14 +29,14 @@
             TimeAutoDrive(350,-50);
             wait(50);   
             AtonDriveRamp(65,75);  
-            AtonTurn(NineM+1);
+            AtonTurn(NineM-2);
 
             AutoCataFiring = true;
             wait(450);
 
             AtonDriveRamp(400,100);
             wait(250);
-            SlideRecon(300, 50, 1);
+            SlideRecon(200, 50, 1);
             wait(300);
             AtonDriveRamp(300,100);
             TimeAutoDrive(350,40);
@@ -65,19 +65,19 @@
             wait(500);
             AtonDriveRamp(-75,100);
            
-            AtonTurn(NineM+7);
-            AtonDriveRamp(-200,100);
+            AtonTurn(NineM+3);
+            AtonDriveRamp(-230,100);
             WristMotorInverted=!WristMotorInverted;
             FLIP();
 
             AtonDriveRamp(100,75);
             liftRotateTo(350);
             wait(100);
-            AtonTurn(NineM+9);
+            AtonTurn(NineM+7);
             AtonDriveRamp(-100,75);
 
             TimeAutoDrive(550,-15);
-            AtonDriveRamp(-400,100);
+            AtonDriveRamp(-350,100);
             MechDriveLock();
             liftRotateTo(0);
         }
@@ -89,23 +89,23 @@
             AtonDriveRamp(1000,80);  
             wait(500);
             AtonDriveRamp(-15,75);
-            AtonTurn(-NineM+6);
+            AtonTurn(-NineM+8);
             
             AtonDriveRamp(-250,100);
             WristMotorInverted=!WristMotorInverted;
             FLIP();
             AtonDriveRamp(25,75);
 
-            AtonTurn(NineM+3);
+            AtonTurn(NineM+2);
             AutoFlip = false;
             AutoIntakeOff = false;
 
             AutoCataFiring = true;
             wait(600);
-            AtonDriveRamp(200,70);
-            AtonTurn(NineM-9.5);
+            AtonDriveRamp(180,70);
+            AtonTurn(NineM-13);
             liftRotateTo(280);
-            AtonDriveRamp(-650,100);
+            AtonDriveRamp(-670,100);
 
             TimeAutoDrive(1300,-8);
             AtonDriveRamp(-300,100);
@@ -115,6 +115,35 @@
         }
 
         void ParkBackBlue(){
+            vex::task WristCalibration(WristCal);
+            AutoIntakeEnabled = true;
+
+            AtonDriveRamp(1050,80);  
+            wait(500);
+            AtonDriveRamp(-75,100);
+           
+            AtonTurn(NineM+3);
+            AtonDriveRamp(-150,100);
+            WristMotorInverted=!WristMotorInverted;
+            FLIP();
+
+            AtonDriveRamp(60,75);
+            liftRotateTo(350);
+            wait(100);
+            AtonTurn(-NineM+8);
+            AtonDriveRamp(15,75);
+            wait(500);//
+            AutoCataFiring = true;
+            wait(500);
+            AtonTurn(-NineM-8);
+            wait(200);
+
+            // AtonSlide(-75,75);
+            AtonDriveRamp(-100,100);
+            TimeAutoDrive(550,-15);
+            AtonDriveRamp(-400,100);
+            MechDriveLock();
+            liftRotateTo(0);
         }
     //Sniper
         void SniperFrontBlue(){
@@ -182,11 +211,11 @@
             wait(500);
             AtonDriveRamp(-50,75);
             liftRotateTo(280);
-            wait(9500);
+            wait(9800);
             AutoIntakeOff = false;
             DriveBrakeType = vex::brakeType::coast;
             setMechDrivePower(0,0,0,0);
-            AtonTurn(NineM-4);
+            AtonTurn(NineM-7);
             AtonDriveRamp(75,75);
             AutoCataFiring = true;
             wait(600);
@@ -195,29 +224,30 @@
         void OtherBackBlue(){
             vex::task WristCalibration(WristCal);
             AutoIntakeEnabled = true;
-
-            AtonDriveRamp(1000,80);  
+            AtonDriveRamp(1100,80);  
             wait(500);
-            AtonDriveRamp(-800,100);
+            AutoIntakeEnabled = true;
+            wait(200);
+            AtonDriveRamp(-750,100);
+            TimeAutoDrive(500,-50);
+            wait(150);   
+            AtonDriveRamp(20,75);  
+            AtonTurn(NineM-2.5);
             // TimeAutoDrive(800,-50);
-            // AtonDriveRamp(50,25);
-            
-            AtonTurn(NineM-6);
-            AtonDriveRamp(1000,100);
-            // wait(250); 
-            // AtonSlide(-50,75);
-            // SlideRecon(800, 70, -1);
-            // wait(500);
-            // AtonSlide(110,75);
+            // wait(200);
+            AtonDriveRamp(1200,100);
+            wait(250); 
             
             AutoCataFiring = true;
             wait(600);
             AtonDriveRamp(300,100);
             wait(100);  
-            SlideRecon(300, 50, -1);
+            SlideRecon(250, 50, 1);
             wait(300);
             AtonDriveRamp(250,100);
             TimeAutoDrive(800,30);
+            SlideRecon(500, 60, 1);
+            TimeAutoDrive(500,30);
         }
 /**/
 /*red*/
@@ -231,9 +261,9 @@
             AtonDriveRamp(-900,100);
             TimeAutoDrive(350,-50);
             wait(50);   
-            AtonDriveRamp(65,75);  
-            AtonTurn(-NineM-1);
-
+            AtonDriveRamp(22,75);  
+            AtonTurn(-NineM+2);
+            // AtonDriveRamp(8,75);  
             AutoCataFiring = true;
             wait(450);
 
@@ -244,7 +274,7 @@
             AtonDriveRamp(300,100);
             TimeAutoDrive(350,40);
             SlideRecon(300, 60, 1);
-            // TimeAutoDrive(800,30);
+            TimeAutoDrive(400,30);
             AtonDriveRamp(-350,100);
             AtonTurn(NineM+1.5);
 
@@ -256,19 +286,20 @@
             AutoIntakeOff = false;
 
             AtonTurn(-NineM+5);
-            AtonDriveRamp(-25,75);
             AutoCataFiring = true;
+            AtonDriveRamp(-25,75);
+            // AutoCataFiring = true;
         }
 
         void BackRed(){
             vex::task WristCalibration(WristCal);
             AutoIntakeEnabled = true;
 
-            AtonDriveRamp(1000,80);  
+            AtonDriveRamp(1050,80);  
             wait(500);
             AtonDriveRamp(-75,100);
            
-            AtonTurn(-NineM-7);
+            AtonTurn(-NineM-4);
             AtonDriveRamp(-200,100);
             WristMotorInverted=!WristMotorInverted;
             FLIP();
@@ -276,7 +307,7 @@
             AtonDriveRamp(100,75);
             liftRotateTo(350);
             wait(100);
-            AtonTurn(-NineM-9);
+            AtonTurn(-NineM-7);
             AtonDriveRamp(-100,75);
 
             TimeAutoDrive(550,-15);
@@ -292,12 +323,12 @@
             AtonDriveRamp(1000,80);  
             wait(500);
             AtonDriveRamp(-15,75);
-            AtonTurn(NineM-6);
+            AtonTurn(NineM-8);
             
             AtonDriveRamp(-250,100);
             WristMotorInverted=!WristMotorInverted;
             FLIP();
-            AtonDriveRamp(25,75);
+            AtonDriveRamp(18,75);
 
             AtonTurn(-NineM-3);
             AutoFlip = false;
@@ -305,8 +336,8 @@
 
             AutoCataFiring = true;
             wait(600);
-            AtonDriveRamp(200,70);
-            AtonTurn(-NineM+9.5);
+            AtonDriveRamp(150,70);
+            AtonTurn(-NineM+12);
             liftRotateTo(280);
             AtonDriveRamp(-650,100);
 
@@ -321,27 +352,28 @@
             vex::task WristCalibration(WristCal);
             AutoIntakeEnabled = true;
 
-            AtonDriveRamp(1000,80);  
+            AtonDriveRamp(1050,80);  
             wait(500);
             AtonDriveRamp(-75,100);
            
-            AtonTurn(-NineM-7);
-            AtonDriveRamp(-200,100);
+            AtonTurn(-NineM-4);
+            AtonDriveRamp(-180,100);
             WristMotorInverted=!WristMotorInverted;
             FLIP();
 
-            AtonDriveRamp(40,75);
+            AtonDriveRamp(65,75);
             liftRotateTo(350);
             wait(100);
-            AtonTurn(NineM-4);
+            AtonTurn(NineM-6.5);
             AtonDriveRamp(15,75);
-            wait(5000);
+            wait(500);//
             AutoCataFiring = true;
             wait(500);
-            AtonTurn(NineM+13);
+            AtonTurn(NineM+8);
             wait(200);
 
             AtonSlide(75,75);
+            AtonDriveRamp(-100,100);
             TimeAutoDrive(550,-15);
             AtonDriveRamp(-400,100);
             MechDriveLock();
@@ -411,13 +443,13 @@
 
             AtonDriveRamp(1000,80);  
             wait(500);
-            AtonDriveRamp(-50,75);
+            AtonDriveRamp(-60,75);
             liftRotateTo(280);
             wait(9500);
             AutoIntakeOff = false;
             DriveBrakeType = vex::brakeType::coast;
             setMechDrivePower(0,0,0,0);
-            AtonTurn(-NineM+4);
+            AtonTurn(-NineM+7);
             AtonDriveRamp(75,75);
             AutoCataFiring = true;
             wait(600);
@@ -427,28 +459,36 @@
             vex::task WristCalibration(WristCal);
             AutoIntakeEnabled = true;
 
-            AtonDriveRamp(1000,80);  
+            AtonDriveRamp(1050,80);  
             wait(500);
-            AtonDriveRamp(-800,100);
-            // TimeAutoDrive(800,-50);
-            // AtonDriveRamp(50,25);
+            AtonDriveRamp(-75,100);
             
-            AtonTurn(-NineM+6);
-            AtonDriveRamp(1000,100);
-            // wait(250); 
-            // AtonSlide(-50,75);
-            // SlideRecon(800, 70, -1);
-            // wait(500);
-            // AtonSlide(110,75);
+            AtonTurn(-NineM-4);
+            AtonDriveRamp(-160,100);
+            WristMotorInverted=!WristMotorInverted;
+            FLIP();
+
+            AtonDriveRamp(200,100);
+
+            AtonTurn(NineM+4);
+
+            AtonDriveRamp(-800,100);
+                TimeAutoDrive(500,-50);
+                wait(150);   
+                AtonDriveRamp(15,75);  
+                AtonTurn(-NineM+2);
+                // TimeAutoDrive(800,-50);
+                // wait(200);
+            AtonDriveRamp(1100,100);
+            wait(250); 
             
             AutoCataFiring = true;
             wait(600);
             AtonDriveRamp(300,100);
             wait(100);  
-            SlideRecon(300, 50, -1);
+            SlideRecon(320, 50, -1);
             wait(300);
             AtonDriveRamp(250,100);
-            TimeAutoDrive(800,30);
         }
 
 /**/
@@ -460,61 +500,27 @@
         AutoIntakeEnabled = true;
         wait(200);
 
-        AtonTurn(-NineM-4);
-        // AtonDriveRamp(-350,100);
-        // //flip
-        //     liftRotateTo(350);
-        //     toggleWrist();
-        //     wait(100);
-        //     liftRotateTo(0);
-        //     // wait(100);
-
-        // AtonDriveRamp(350,100);
-        // wait(100);
-        // AtonTurn(6);
-        AtonDriveRamp(-70,100);
-        //flip
-            liftRotateTo(350);
-            toggleWrist();
-            wait(100);
-            liftRotateTo(0);
-            // wait(100);
-
-        AtonDriveRamp(100,100);
-
-        AtonTurn(NineM+2);
-        // AtonDriveRamp(-900,100);
-        // AtonTurn(-NineM+5);
-        // AtonDriveRamp(1000,100);
-        // wait(250); 
-        // AtonSlide(-50,75);
-        // SlideRecon(800, 70, -1);
-        // wait(500);
-        // AtonSlide(130,75);
+        AtonDriveRamp(-75,100);
         
-        // AtonDriveRamp(-100,100);
-        // wait(100);
-        // AtonSlide(180,100);
+        AtonTurn(-NineM-4);
+        AtonDriveRamp(-160,100);
+        WristMotorInverted=!WristMotorInverted;
+        FLIP();
 
-        // AutoIntakeOff = true;
-        // AutoFlip = true;
+        AtonDriveRamp(200,100);
 
-        // AtonDriveRamp(400,100);
-        // AutoFlip = false;
-        // AutoIntakeOff = false;
+        AtonTurn(NineM+4);
 
-        // AtonDriveRamp(-1800,100);
-
-
-        AtonDriveRamp(-900,100);
+        AtonDriveRamp(-800,100);
             TimeAutoDrive(500,-50);
             wait(150);   
-            AtonDriveRamp(8,75);  
-            AtonTurn(-NineM);
-            TimeAutoDrive(800,-50);
-            wait(200);
-        AtonDriveRamp(1600,100);
-        wait(250); 
+            AtonDriveRamp(15,75);  
+            AtonTurn(-NineM+2);
+            // TimeAutoDrive(800,-50);
+            // wait(200);
+        AtonDriveRamp(940,100);
+        wait(250);
+        AtonTurn(.5); 
         
         AutoCataFiring = true;
         wait(600);
@@ -538,17 +544,17 @@
         wait(200);
         AutoIntakeOff = false;
         wait(200);
-        AtonDriveRamp(-30,100);
+        AtonDriveRamp(-50,100);
         AutoIntakeOff = false;
-        AtonTurn(-NineM+2);
+        AtonTurn(-NineM+4.5);
         wait(200);
-        AtonDriveRamp(30,75);
+        // AtonDriveRamp(15,75);
 
         AutoCataFiring = true;
         wait(400);
         AtonDriveRamp(420,100);
         wait(100);
-        AtonTurn(-3);
+        AtonTurn(-2);
         wait(300);
         // SlideRecon(400, 50, -1);
         AtonDriveRamp(250,100);
@@ -559,7 +565,7 @@
 
         //-----------3rd Row of Flags--------------//
         AtonDriveRamp(-370,100);
-        AtonTurn(-NineM-1);
+        AtonTurn(-NineM+1);
 
         AutoIntakeOff = true;
         AutoFlip = true;
@@ -568,7 +574,7 @@
         AutoFlip = false;
         AutoIntakeOff = false;
 
-        AtonDriveRamp(-1800,100);
+        AtonDriveRamp(-1700,100);
         liftRotateTo(350);
         toggleWrist();
         wait(100);
@@ -585,12 +591,12 @@
         SlideRecon(1000, 60, -1);
         wait(100);
 
-        AtonDriveRamp(-750,100);
-        TimeAutoDrive(850,-50);
-        wait(300);
-        AtonDriveRamp(200,100);
+        AtonDriveRamp(-260,100);
+        // TimeAutoDrive(850,-50);
+        // wait(300);
+        // AtonDriveRamp(200,100);
         wait(200);
-        AtonTurn(NineM);
+        AtonTurn(NineM-2);
         AtonDriveRamp(50,75);
         // liftRotateTo(350);
         AutoCataFiring = true;
@@ -608,9 +614,10 @@
         // AtonDriveRamp(-200,75);
         // AutoCataFiring = true;
         // wait(500);
-        AtonDriveRamp(-650,100);
+        AtonDriveRamp(-1000,100);
+        liftRotateTo(350);
         wait(300);
-        AtonSlide(-270,75);
+        AtonSlide(-290,80);
         wait(250);
 
         TimeAutoDrive(1000,-8);

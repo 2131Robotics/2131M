@@ -80,6 +80,8 @@
         void wristCall(){
             int liftUp = 400;
             int wristCalTIme = 500;
+
+            vex::task::sleep(100);
             setLiftPower(100);
             vex::task::sleep(liftUp);
             setLiftPower(0);
@@ -89,7 +91,7 @@
             setWristPower(0);
 
             setLiftPower(-100);
-            vex::task::sleep(liftUp);
+            vex::task::sleep(liftUp+100);
             setLiftPower(0);
             WristCalibrated = true;
         }
