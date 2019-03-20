@@ -1,18 +1,27 @@
 #ifndef SETMOTORS_HPP
 #define SETMOTORS_HPP
+namespace Drive{
+  void setMechLFVel(int pct);
+  void setMechLBVel(int pct);
+  void setMechRFVel(int pct);
+  void setMechRBVel(int pct);
 
-void setMechLFPower(int pct);
-void setMechLBPower(int pct);
-void setMechRFPower(int pct);
-void setMechRBPower(int pct);
+  void setMechDriveVel(int LF,int LB,int RF,int RB);
+  void DriveMechVelSend(int j1,int j2,int j3,int j4);
+  void setDriveVel(int left, int right);
+}
 
-void setMechDrivePower(int LF,int LB,int RF,int RB);
-void DriveMechPowerSend(int j1,int j2,int j3,int j4);
-void setDrivePower(int left, int right);
-
-void setIntakePower(int vel);
-void setFlipPower(int vel);
-void setCatapultPower(int vel);
-void setLiftPower(int vel);
+namespace Catapult{
+  void setCatapultVel(int vel);
+}
+namespace Intake{
+  void setIntakeVel(int vel);
+}
+namespace Lift{
+  void setLiftVel(int vel);
+}
+namespace Flipper{
+  void setFlipVel(int vel);
+}
 
 #endif /* end of include guard: SETMOTORS_HPP */

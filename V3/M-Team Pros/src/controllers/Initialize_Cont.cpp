@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include "N_Custom/declars/Systems/Drive.hpp"
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -12,6 +12,22 @@ void initialize() {
   Drive::RightFMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   Drive::RightBMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
 
+  Catapult::CatapultMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+
+  Intake::IntakeMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+
+  Lift::LiftMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+
+  Flipper::FlipMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+
+  Drive::LeftFMotor.tarePosition();
+  Drive::LeftBMotor.tarePosition();
+  Drive::RightFMotor.tarePosition();
+  Drive::RightBMotor.tarePosition();
+
+  Flipper::FlipMotor.tarePosition();
+  Lift::LiftMotor.tarePosition();
+
   // pros::Task CatapultTask (usefull, (void) "PROS", TASK_PRIORITY_DEFAULT,
   // TASK_STACK_DEPTH_DEFAULT, "My Task");
 }
@@ -21,7 +37,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+  //future aton selector
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field

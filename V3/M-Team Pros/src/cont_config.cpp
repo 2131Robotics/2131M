@@ -8,13 +8,13 @@ namespace Drive{
   okapi::ControllerButton DriveToggle = MController[okapi::ControllerDigital::X];
 }
 
-namespace Flipper{
-  okapi::ControllerButton Up = MController[okapi::ControllerDigital::L1];
-  okapi::ControllerButton Down = MController[okapi::ControllerDigital::L2];
-}
-
 namespace Catapult{
   okapi::ControllerButton Fire = MController[okapi::ControllerDigital::R2];
+}
+
+namespace Intake{
+  okapi::ControllerButton In = MController[okapi::ControllerDigital::R1];
+  okapi::ControllerButton Out = MController[okapi::ControllerDigital::A];
 }
 
 namespace Lift{
@@ -22,7 +22,8 @@ namespace Lift{
   okapi::ControllerButton Down = MController[okapi::ControllerDigital::L2];
 }
 
-namespace Intake{
-  okapi::ControllerButton In = MController[okapi::ControllerDigital::R1];
-  okapi::ControllerButton Out = MController[okapi::ControllerDigital::down];
+namespace Flipper{
+  okapi::ControllerButton Up = MController[okapi::ControllerDigital::L1];
+  okapi::ControllerButton Down = MController[okapi::ControllerDigital::L2];
+  okapi::ControllerButton CapPush = MController[okapi::ControllerDigital::up];
 }

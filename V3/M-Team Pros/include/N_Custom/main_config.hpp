@@ -2,6 +2,7 @@
 #define MAIN_CONFIG_HPP
 
 #include "okapi/api.hpp"
+#include "N_Custom/declars/Ramping.hpp"
 
 //Devices
 
@@ -11,29 +12,36 @@ namespace Drive{
   extern okapi::Motor LeftBMotor;
   extern okapi::Motor RightFMotor;
   extern okapi::Motor RightBMotor;
-}
 
-namespace Flipper{
-  extern okapi::Motor FlipMotor;
+  extern Ramping LFDR;
+  extern Ramping RFDR;
+  extern Ramping LBDR;
+  extern Ramping RBDR;
+
 }
 
 namespace Catapult{
   extern okapi::Motor CatapultMotor;
+
+  extern pros::ADILineSensor ChargeLightSensor;
+}
+
+namespace Intake{
+  extern okapi::Motor IntakeMotor;
+
+  extern pros::ADILineSensor BallSenseTop;
+  extern pros::ADILineSensor BallSenseBottom;
 }
 
 namespace Lift{
   extern okapi::Motor LiftMotor;
 }
 
-namespace Intake{
-  extern okapi::Motor IntakeMotor;
+namespace Flipper{
+  extern okapi::Motor FlipMotor;
 }
 
 //Sensors
-extern pros::ADIAnalogIn ChargeLightSensor;
-extern pros::ADIAnalogIn BallSenseBottom;
-extern pros::ADIAnalogIn BallSenseTop;
-
 extern pros::ADIAnalogIn MainAtonSelect;
 extern pros::ADIAnalogIn SecAtonSelect;
 

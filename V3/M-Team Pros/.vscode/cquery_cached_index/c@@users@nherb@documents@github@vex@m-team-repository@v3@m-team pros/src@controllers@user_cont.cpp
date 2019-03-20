@@ -1,6 +1,10 @@
 #include "main.h"
 
-#include "N_Custom/declars/userFunctions.hpp"
+#include "N_Custom/declars/Systems/Drive.hpp"
+#include "N_Custom/declars/Systems/Catapult.hpp"
+#include "N_Custom/declars/Systems/Intake.hpp"
+#include "N_Custom/declars/Systems/Lift.hpp"
+#include "N_Custom/declars/Systems/Flipper.hpp"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -16,7 +20,17 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	MechDriveRampingEnabled=false;
+	AutoIntakeTaskEnabled=false;
 	while (true) {
-		DriveCont_LockContM();
+		Drive::IsDriveFippedControll();
+
+		Drive::DriveCont_LockContM();
+		Catapult::catapultChargeFire();
+		Intake::intakeControll();
+		Lift::liftManualCont();
+		Flipper::FlipManualCont();
+
+		pros::delay(20);
 	}
 }

@@ -1,8 +1,9 @@
+#include "N_Custom/declars/vars.hpp"
 /*Math vars*/
-	double abs(double Var) {
-		if (Var < 0)  Var = Var * (-1);
-		return Var;
-	}
+	// double abs(double Var) {
+	// 	if (Var < 0)  Var = Var * (-1);
+	// 	return Var;
+	// }
 	double sgn(double Var) {
 		if (Var > 0)   Var = 1;
 		else        Var = -1;
@@ -32,13 +33,11 @@
 	//bool WristMotorInvertedTwo = true;
 
 /*Catapult vars*/
-	bool AutoCatapultEnabled;
+	bool AutoCatapultEnabled = true;
 
 /*Intake vars*/
 	bool AutoIntakeEnabled = false;
 	bool AutoIntakeTaskEnabled = false;
-	bool AutoIntakeOff = false;
-	bool AutoFlip=false;
 	// bool AutoMan=false;
 
 	bool IntakeEnabledBtnPressed;
@@ -72,10 +71,11 @@
 
 
 /*Aton vars*/
-	double Nine = 9;
-	double NineM = /*15*/17.5;
-	int FullM = NineM*2;
+	double Nine = 6000;
+	double Full = Nine*2;
 
+	double LiftDown = 0;
+	double LiftUp = 500;
 	// int UP = 90;
 	// int DOWN = 30;
 

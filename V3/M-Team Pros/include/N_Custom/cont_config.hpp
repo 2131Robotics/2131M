@@ -10,13 +10,13 @@ namespace Drive{
   extern okapi::ControllerButton DriveToggle;
 }
 
-namespace Flipper{
-  extern okapi::ControllerButton Up;
-  extern okapi::ControllerButton Down;
-}
-
 namespace Catapult{
   extern okapi::ControllerButton Fire;
+}
+
+namespace Intake{
+  extern okapi::ControllerButton In;
+  extern okapi::ControllerButton Out;
 }
 
 namespace Lift{
@@ -24,9 +24,10 @@ namespace Lift{
   extern okapi::ControllerButton Down;
 }
 
-namespace Intake{
-  extern okapi::ControllerButton In;
-  extern okapi::ControllerButton Out;
+namespace Flipper{
+  extern okapi::ControllerButton Up;
+  extern okapi::ControllerButton Down;
+  extern okapi::ControllerButton CapPush;
 }
 
 #endif /* end of include guard: CONT_CONFIG_HPP */
