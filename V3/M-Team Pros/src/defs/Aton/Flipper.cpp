@@ -4,6 +4,6 @@
  namespace Flipper {
    void RotateTo(double pos, int vel, bool wait){
      FlipMotor.moveAbsolute(pos,vel);
-     if(wait) while(FlipMotor.isStopped()==0) pros::delay(5);
+     if(wait) while(FlipMotor.getActualVelocity()>0) pros::delay(5);
    }
  } /* Flipper */

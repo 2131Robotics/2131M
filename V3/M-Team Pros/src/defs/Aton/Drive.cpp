@@ -3,6 +3,15 @@
 #include "N_Custom/declars/Systems/Drive.hpp"
 //------Manual Drive Controll------------//
 namespace Drive{
+  void MechDriveLockA(){
+    LeftFMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    LeftBMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    RightFMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+    RightBMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+
+    setMechDriveVel(0,0,0,0);
+  }
+
 //------------Aton Drive Ramping---------------------//
   void AtonDriveRamp(double Distance,int Pct,int EndWait,int Correction){
     //update ramping speed
@@ -137,7 +146,65 @@ namespace Drive{
     SetDRMvel(0,0,0,0);
     pros::delay(EndWait);
   }
-
+  void ShortSlide(double Distance,int Pct,int EndWait,int Correction){
+    MechDriveRampingEnabled=false;
+    //calculate direction and set L & R PowerSend
+    double Direction=sgn(Distance);
+    int LFPowerSend=0;
+    int LBPowerSend=0;
+    int RFPowerSend=0;
+    int RBPowerSend=0;
+    //clear enc
+    LeftFMotor.tarePosition();
+    LeftBMotor.tarePosition();
+    RightBMotor.tarePosition();
+    RightFMotor.tarePosition();
+    //is it there yet?
+    while(std::abs(RightBMotor.getPosition())<std::abs(Distance)){
+      double LEncValue=LeftFMotor.getPosition();
+      double REncValue=RightBMotor.getPosition();
+      //straiten
+      if(std::abs(LEncValue)>std::abs(REncValue)){
+        LFPowerSend=Pct-Correction;
+        LBPowerSend=Pct-Correction;
+        RFPowerSend=Pct;
+        RBPowerSend=Pct;
+      }
+      else if(std::abs(LEncValue)<std::abs(REncValue)){
+        LFPowerSend=Pct;
+        LBPowerSend=Pct;
+        RFPowerSend=Pct-Correction;
+        RBPowerSend=Pct-Correction;
+      }
+      else if(std::abs(LEncValue)==std::abs(REncValue)){
+        LFPowerSend=Pct;
+        LBPowerSend=Pct;
+        RFPowerSend=Pct;
+        RBPowerSend=Pct;
+      }
+      //correct direction
+      if(Direction == 1){
+        LFPowerSend=LFPowerSend;
+        LBPowerSend=LBPowerSend*(-1);
+        RFPowerSend=RFPowerSend*(-1);
+        RBPowerSend=RBPowerSend;
+      }
+      if(Direction == -1){
+        LFPowerSend=LFPowerSend*(-1);
+        LBPowerSend=LBPowerSend;
+        RFPowerSend=RFPowerSend;
+        RBPowerSend=RBPowerSend*(-1);
+      }
+      //send to SetDRpower
+      setMechDriveVel(LFPowerSend,LBPowerSend,RFPowerSend,RBPowerSend);
+      pros::delay(10);
+    }
+    SetDRMvel(0,0,0,0);
+    pros::delay(EndWait);
+      pros::Task DriveRampingTask (Drive::Drive_Ramping,(void*)"PROS",
+        TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT, "DriveRampingTask");
+  }
+  
   void SlideRecon(int time, int power, int dir){
       MechDriveRampingEnabled=false;
       setMechLFVel(power*dir);

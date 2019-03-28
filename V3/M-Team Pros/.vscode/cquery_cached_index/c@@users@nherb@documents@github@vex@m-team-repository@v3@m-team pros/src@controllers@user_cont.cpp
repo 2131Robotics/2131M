@@ -22,6 +22,7 @@
 void opcontrol() {
 	MechDriveRampingEnabled=false;
 	AutoIntakeTaskEnabled=false;
+	AutoCatapultEnabled=false;
 	while (true) {
 		Drive::IsDriveFippedControll();
 
