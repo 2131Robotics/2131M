@@ -2,6 +2,7 @@
 
 namespace Lift{
   void liftManualCont(){
+    // Flipper::setFlipVel(0);
     if(LiftMotor.get_position() < 100)
          LiftMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
     else LiftMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);

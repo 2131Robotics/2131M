@@ -13,13 +13,16 @@ namespace Drive{
     if(DriveToggle.changed()){ // when the button changes
       if(DriveToggle.isPressed()){ //when it is pressed
         DriveDirInverted=!DriveDirInverted;
+        Lift::setLiftVel(0);
+        Flipper::setFlipVel(0);
       }
       else{
 
       }
     }
     else if(DriveToggle.isPressed()){ //if your holding the button do this
-
+      Lift::setLiftVel(0);
+      Flipper::setFlipVel(0);
     }
     else{ //default state
 
@@ -99,7 +102,10 @@ namespace Drive{
 
       }
 
-      if(DriveLockInverted) MechDriveLock();
+      if(DriveLockInverted){
+        MechDriveLock();
+        ManualMechDriveCont();
+      }
       else if(!DriveLockInverted) {
         MechDriveRelease();
         ManualMechDriveCont();

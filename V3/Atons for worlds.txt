@@ -23,3 +23,8 @@ Back:
 		 park lift side turn and shoot apponents flags
 
 	Other - first part of skills, after shoot turn and park.
+
+Things to finish with skills:
+	- change flipper value and multiply by two
+	- push each cap over with flipper
+	- 

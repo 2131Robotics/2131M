@@ -92,6 +92,7 @@ namespace Drive{
     RFDR.ChangeMsec = 3;
     LBDR.ChangeMsec = 3;
     RBDR.ChangeMsec = 3;
+    
     //calculate direction and set L & R PowerSend
     double Direction=sgn(Distance);
     int LFPowerSend=0;
@@ -105,7 +106,7 @@ namespace Drive{
     RightFMotor.tarePosition();
     //is it there yet?
     while(std::abs(RightBMotor.getPosition())<std::abs(Distance)){
-      double LEncValue=LeftFMotor.getPosition();
+      double LEncValue=RightFMotor.getPosition();
       double REncValue=RightBMotor.getPosition();
       //straiten
       if(std::abs(LEncValue)>std::abs(REncValue)){
@@ -144,6 +145,9 @@ namespace Drive{
       pros::delay(LBDR.ChangeMsec);
     }
     SetDRMvel(0,0,0,0);
+    while(LBDR.Pct!=0 || RBDR.Pct!=0){
+      pros::delay(1);
+    }
     pros::delay(EndWait);
   }
   void ShortSlide(double Distance,int Pct,int EndWait,int Correction){

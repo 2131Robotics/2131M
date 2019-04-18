@@ -16,7 +16,6 @@ namespace Intake{
 
   void Auto_Intaking(void*AutoIntaking){
     AutoIntakeTaskEnabled = true;
-    // AutoIntakeEnabled = true;
     while(AutoIntakeTaskEnabled){
       BottomLightValue = BallSenseBottom.get_value();
       TopLightValue = BallSenseTop.get_value();

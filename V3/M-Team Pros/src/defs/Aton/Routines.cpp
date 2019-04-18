@@ -24,43 +24,46 @@ void test(){
   //
   // Flipper::RotateTo(500);
   // Lift::RotateTo(500);
+
+  Drive::AtonSlide(1000);
+  Drive::AtonSlide(-1000);
+
 }
 
 /*blue*/
 //Normal
 void FrontBlue(){
-  Drive::AtonDriveRamp(850);
+  Drive::AtonDriveRamp(820);
   pros::delay(300);
   Drive::AtonDriveRamp(-700);
   pros::delay(200);
-  Drive::AtonTurn(Nine-150);
+  Drive::AtonTurn(Nine-200);
   Catapult::Shoot=true;
   pros::delay(400);
-  Drive::AtonDriveRamp(400);
-  Drive::SlideRecon(250,200,1);
-  Drive::AtonDriveRamp(200);
-  Drive::TimeAutoDrive(300,100);
+  Drive::AtonDriveRamp(350);
+  Drive::SlideRecon(200,200,1);
+  Drive::AtonDriveRamp(250);
+  Drive::TimeAutoDrive(400,100);
   pros::delay(200);
   Drive::AtonDriveRamp(-70);
-  Drive::AtonTurn(-Nine-3000);
+  Drive::AtonTurn(-Nine-2500);
   Flipper::RotateTo(-350,200,true);
-  Drive::AtonDriveRamp(400);
+  Drive::AtonDriveRamp(450);
   Flipper::RotateTo(0);
-  Drive::AtonTurn(Nine);
+  Drive::AtonTurn(Nine-500);
   Catapult::Shoot=true;
   pros::delay(400);
 }
 
 void BackBlue(){
-  //-------Stack the Cap------------//
   Drive::AtonDriveRamp(890);
   Drive::AtonTurn(Nine-30);
   Lift::setLiftVel(-5);
   Drive::AtonDriveRamp(-200);
   Drive::TimeAutoDrive(500,-20);
   Lift::RotateTo(120,100,true);
-  Drive::AtonDriveRamp(75);
-  Drive::AtonTurn(Nine-50);
+  Drive::AtonDriveRamp(65);
+  Drive::AtonTurn(Nine-80);
   Flipper::RotateTo(-250);
   Drive::AtonDriveRamp(550);
   Drive::TimeAutoDrive(600,80);
@@ -68,115 +71,198 @@ void BackBlue(){
   pros::delay(200);
   Lift::RotateTo(775);
   Drive::TimeAutoDrive(700,80);
-
-  Drive::AtonDriveRamp(-170);
   pros::delay(200);
+
+  Drive::AtonDriveRamp(-100);
+  pros::delay(150);
   Lift::RotateTo(80,200,true);
   pros::delay(200);
   Drive::AtonSlide(-750);
-  Drive::TimeAutoDrive(300,-20);
-  Drive::AtonDriveRamp(-430);
+  Drive::TimeAutoDrive(600,-30);
+  Drive::AtonDriveRamp(-450);
   Drive::MechDriveLockA();
   Lift::RotateTo(0,200,true);
 }
 //Parking
-void ParkFrontBlue(){}
+void ParkFrontBlue(){
+  Drive::AtonDriveRamp(800);
+  Drive::AtonDriveRamp(-150);
+  Catapult::Shoot=true;
+  Flipper::RotateTo(-350);
+  Drive::AtonTurn(Nine,125,125);
+  Drive::AtonDriveRamp(300);
+  Flipper::RotateTo(0);
+  Drive::AtonDriveRamp(-280);
+  Drive::AtonTurn(-Nine-4000);
+  Flipper::RotateTo(-280);
+  Drive::AtonDriveRamp(30);
+  Drive::AtonDriveRamp(-60);
+  Flipper::RotateTo(0);
+  Lift::RotateTo(80,200,true);
+  Drive::AtonTurn(Nine+3500);
+  Drive::AtonSlide(-280);
+  Drive::TimeAutoDrive(250,-20);
+  Drive::AtonDriveRamp(-500);
+  Drive::MechDriveLockA();
+  Lift::RotateTo(0,200,true);
+  pros::delay(200);
+  Drive::AtonTurn(-3000);
+  Catapult::Shoot=true;
+}
 
-void ParkBackBlue(){}
+void ParkBackBlue(){
+    //-------Stack the Cap------------//
+  Drive::AtonDriveRamp(950);
+  Drive::AtonTurn(Nine-30);
+  Lift::setLiftVel(-5);
+  Drive::AtonDriveRamp(-200);
+  Drive::TimeAutoDrive(250,-20);
+  Lift::RotateTo(120,100,true);
+  Drive::AtonDriveRamp(50);
+  Drive::AtonTurn(-1700);
+  Catapult::Shoot=true;
+  pros::delay(600);
+  Drive::AtonTurn(Nine+1800);
+  Flipper::RotateTo(-250);
+
+  Drive::AtonDriveRamp(550);
+  Drive::TimeAutoDrive(600,80);
+  Flipper::RotateTo(0);
+  pros::delay(200);
+  Lift::RotateTo(775);
+  Drive::TimeAutoDrive(700,80);
+
+  Drive::AtonDriveRamp(-600);
+  Drive::AtonTurn(Nine+200);
+  Lift::RotateTo(100,200,true);
+  Drive::AtonDriveRamp(-200);
+  Drive::TimeAutoDrive(300,-20);
+  Drive::AtonDriveRamp(-480);
+  Drive::MechDriveLockA();
+  Lift::RotateTo(0,200,true);
+}
 //Sniper
-void SniperFrontBlue(){}
+void SniperFrontBlue(){
+  Drive::AtonDriveRamp(120);
+  Drive::AtonTurn(-(Nine/2)+500);
+  Drive::AtonDriveRamp(110);
+  Flipper::RotateTo(-250);
+  Drive::AtonDriveRamp(-100);
+  Flipper::RotateTo(0);
+  Drive::AtonTurn((Nine*2)-2600);
+  Catapult::Shoot=true;
+  pros::delay(550);
+
+  Flipper::RotateTo(-320);
+  Drive::AtonTurn(-2000);
+  Drive::AtonDriveRamp(300);
+  Flipper::RotateTo(0);
+  Drive::AtonDriveRamp(-200);
+  Drive::AtonTurn(-Nine+1700);
+  Drive::AtonDriveRamp(350);
+  Drive::AtonTurn(3100);
+  Catapult::Shoot=true;
+  pros::delay(550);
+  Drive::AtonTurn(-3100);
+  Drive::AtonDriveRamp(-300);
+}
 
 void SniperBackBlue(){
   Drive::AtonDriveRamp(120);
   Drive::AtonTurn((Nine/2)-500);
-  Drive::AtonDriveRamp(110);
+  Drive::AtonDriveRamp(115);
   Flipper::RotateTo(-250);
   Drive::AtonDriveRamp(-60);
   Drive::AtonTurn(1600);
   Catapult::Shoot=true;
-  Drive::AtonDriveRamp(30);
+  Drive::AtonDriveRamp(20);
   pros::delay(100);
   Flipper::RotateTo(0);
   Drive::AtonDriveRamp(-90);
-  Drive::AtonTurn(-(Nine/2)-1300);
-  Drive::AtonDriveRamp(340);
-  Drive::AtonDriveRamp(-290);
-  Drive::AtonTurn(3200);
+  Drive::AtonTurn(-(Nine/2)-1000);
+  Drive::AtonDriveRamp(350,200);
+  Drive::AtonDriveRamp(-280);
+  Drive::AtonTurn(3150);
   Catapult::Shoot=true;
   pros::delay(400);
   Lift::RotateTo(80,200,true);
   Drive::AtonTurn(Nine+3000);
-  Drive::AtonSlide(-420);
+  Drive::AtonSlide(-500);
   Drive::TimeAutoDrive(250,-20);
-  Drive::AtonDriveRamp(-575);
+  Drive::AtonDriveRamp(-700);
   Drive::MechDriveLockA();
   Lift::RotateTo(0,200,true);
+
 }
 //Other
 void OtherFrontBlue(){}
 
 void OtherBackBlue(){
-  Drive::AtonDriveRamp(890);
-  Drive::AtonDriveRamp(-200);
+  Drive::AtonDriveRamp(830);
+  Drive::AtonDriveRamp(-180);
   Drive::AtonTurn(-Nine/2);
   Flipper::RotateTo(-320);
   pros::delay(200);
   Drive::AtonDriveRamp(200);
   Flipper::RotateTo(0);
   Drive::AtonDriveRamp(-200);
-  Drive::AtonTurn((Nine/2)-150);
+  Drive::AtonTurn((Nine/2)-100);
   Drive::AtonDriveRamp(-300);
   Drive::TimeAutoDrive(700,-80);
   //-------First Row of Flags-------//
   pros::delay(150);
-  Drive::AtonTurn(Nine-400);
+  Drive::AtonTurn(Nine-200);
   // Drive::AtonDriveRamp(720);
   Catapult::Shoot=true;
-  pros::delay(300);
+  pros::delay(100);
   Drive::AtonDriveRamp(260);
   Drive::AtonTurn(Nine);
   Drive::TimeAutoDrive(400,100);
   Lift::RotateTo(80,200,true);
   // Drive::TimeAutoDrive(250,-20);
-  Drive::AtonDriveRamp(-1300);
+  Drive::AtonDriveRamp(-1200);
   Drive::MechDriveLockA();
   Lift::RotateTo(0,200,true);
-}
 
+}
 /*red*/
 //Normal
 void FrontRed(){
   Drive::AtonDriveRamp(850);
   pros::delay(300);
-  Drive::AtonDriveRamp(-680);
+  Drive::AtonDriveRamp(-710);
   pros::delay(200);
-  Drive::AtonTurn(-Nine+150);
+  Drive::AtonTurn(-Nine);
   Catapult::Shoot=true;
   pros::delay(400);
   Drive::AtonDriveRamp(300);
-  Drive::SlideRecon(300,200,-1);
+  // pros::delay(200);
+  Drive::SlideRecon(250,200,-1);
+  // Drive::AtonSlide(-70);
+  // Drive::AtonTurn(-1500);
   Drive::AtonDriveRamp(200);
-  Drive::TimeAutoDrive(300,100);
+  // Drive::AtonTurn(1500);
+  Drive::TimeAutoDrive(450,100);
   pros::delay(200);
   Drive::AtonDriveRamp(-70);
   Drive::AtonTurn(Nine+3000);
-  Flipper::RotateTo(-350,200,true);
+  Flipper::RotateTo(-320,200,true);
   Drive::AtonDriveRamp(400);
   Flipper::RotateTo(0);
-  Drive::AtonTurn(-Nine+100);
+  Drive::AtonTurn(-Nine);
   Catapult::Shoot=true;
   pros::delay(400);
 }
 
 void BackRed(){
   //-------Stack the Cap------------//
-  Drive::AtonDriveRamp(890);
+  Drive::AtonDriveRamp(900);
   Drive::AtonTurn(-Nine+30);
   Lift::setLiftVel(-5);
   Drive::AtonDriveRamp(-200);
-  Drive::TimeAutoDrive(500,-20);
+  Drive::TimeAutoDrive(300,-20);
   Lift::RotateTo(120,100,true);
-  Drive::AtonDriveRamp(75);
+  Drive::AtonDriveRamp(60);
   Drive::AtonTurn(-Nine+50);
   Flipper::RotateTo(-250);
   Drive::AtonDriveRamp(550);
@@ -186,11 +272,11 @@ void BackRed(){
   Lift::RotateTo(775);
   Drive::TimeAutoDrive(700,80);
 
-  Drive::AtonDriveRamp(-200);
+  Drive::AtonDriveRamp(-175);
   pros::delay(200);
   Lift::RotateTo(80,200,true);
   pros::delay(200);
-  Drive::AtonSlide(750);
+  Drive::AtonSlide(900);
   Drive::TimeAutoDrive(300,-20);
   Drive::AtonDriveRamp(-450);
   Drive::MechDriveLockA();
@@ -223,7 +309,38 @@ void ParkingFrontRed(){
   Catapult::Shoot=true;
 }
 
-void ParkingBackRed(){}
+void ParkingBackRed(){
+  //-------Stack the Cap------------//
+  Drive::AtonDriveRamp(950);
+  Drive::AtonTurn(-Nine+30);
+  Lift::setLiftVel(-5);
+  Drive::AtonDriveRamp(-200);
+  Drive::TimeAutoDrive(250,-20);
+  Lift::RotateTo(120,100,true);
+  Drive::AtonDriveRamp(50);
+  Drive::AtonTurn(1700);
+  Catapult::Shoot=true;
+  pros::delay(500);
+  Drive::AtonTurn(-Nine-2000);
+  Flipper::RotateTo(-250);
+
+  Drive::AtonDriveRamp(550);
+  Drive::TimeAutoDrive(600,80);
+  Flipper::RotateTo(0);
+  pros::delay(200);
+  Lift::RotateTo(775);
+  Drive::TimeAutoDrive(700,80);
+
+  Drive::AtonDriveRamp(-600);
+  Drive::AtonTurn(-Nine-200);
+  Lift::RotateTo(100,200,true);
+  Drive::AtonDriveRamp(-200);
+  Drive::TimeAutoDrive(300,-20);
+  Drive::AtonDriveRamp(-480);
+  Drive::MechDriveLockA();
+  Lift::RotateTo(0,200,true);
+
+}
 //Sniper
 void SniperFrontRed(){
   Drive::AtonDriveRamp(120);
@@ -245,18 +362,10 @@ void SniperFrontRed(){
   Drive::AtonDriveRamp(350);
   Drive::AtonTurn(-3100);
   Catapult::Shoot=true;
+  pros::delay(550);
+  Drive::AtonTurn(3100);
+  Drive::AtonDriveRamp(-300);
 
-  // Drive::AtonTurn(Nine);
-  // Drive::AtonDriveRamp(350);
-  // pros::delay(200);
-  // Flipper::RotateTo(-320);
-  // Drive::AtonDriveRamp(-30);
-  // Drive::AtonTurn(-Nine-2000);
-  // Drive::AtonDriveRamp(480);
-  // Flipper::RotateTo(0);
-  // Drive::AtonTurn(Nine+1700);
-  // Drive::AtonDriveRamp(350);
-  // Catapult::Shoot=true;
 }
 
 void SniperBackRed(){
@@ -318,7 +427,9 @@ void OtherBackRed(){
 
 /*skills*/
 void Skills(){
-  Flipper::RotateTo(-230);
+  Lift::LiftMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  Lift::setLiftVel(0);
+  Flipper::RotateTo(-250);
   Intake::AutoIntakeOff=true;
   Drive::AtonDriveRamp(890);
   Flipper::RotateTo(0);
@@ -331,14 +442,14 @@ void Skills(){
   Drive::AtonDriveRamp(200);
   Flipper::RotateTo(0);
   Drive::AtonDriveRamp(-200);
-  Drive::AtonTurn(-(Nine/2)-150);
+  Drive::AtonTurn(-(Nine/2)+100);
   Drive::AtonDriveRamp(-300);
   Drive::TimeAutoDrive(700,-80);
   //-------First Row of Flags-------//
   // Drive::AtonDriveRamp(35);
   pros::delay(150);
-  Drive::AtonTurn(-Nine+350);
-  Drive::AtonDriveRamp(720);
+  Drive::AtonTurn(-Nine+150);
+  Drive::AtonDriveRamp(775);
   Catapult::Shoot=true;
   pros::delay(600);
   // Drive::ShortSlide(-10);
@@ -351,9 +462,9 @@ void Skills(){
   //-------Seconed Row of Flags-------//
   Drive::AtonDriveRamp(-950);
   pros::delay(200);
-  Drive::AtonSlide(200);
-  pros::delay(400);
-  Flipper::RotateTo(-320);
+  Drive::AtonSlide(250);
+  // pros::delay(400);
+  Flipper::RotateTo(-310);
   Drive::AtonDriveRamp(250);
   Flipper::RotateTo(0);
   pros::delay(300);
@@ -361,22 +472,26 @@ void Skills(){
   Drive::AtonTurn(Nine-200);
   // Drive::AtonDriveRamp(-500);
   // Drive::TimeAutoDrive(700,-80);
-  // pros::delay(300);
+  Flipper::RotateTo(-240);
   Intake::AutoIntakeOff=true;
   Drive::AtonDriveRamp(250);
+  Flipper::RotateTo(0);
+  Lift::setLiftVel(-5);
   Intake::AutoIntakeOff=false;
   pros::delay(150);
+  Lift::RotateTo(0);
   Drive::AtonDriveRamp(-80);
   Drive::AtonTurn(-Nine);
   // Drive::AtonDriveRamp(-60);
   Drive::TimeAutoDrive(500,-80);
+  Lift::setLiftVel(0);
   pros::delay(150);
-  // Drive::AtonDriveRamp(35);
-  Drive::AtonTurn(1150);
+  Drive::AtonTurn(1050);
+  Drive::AtonDriveRamp(30);
   Catapult::Shoot=true;
   pros::delay(400);
   // Drive::SlideRecon(250, 80, -1);
-  Drive::AtonDriveRamp(450);
+  Drive::AtonDriveRamp(320);
   Drive::AtonTurn(-1200);
   // Drive::SlideRecon(500, 80, -1);
   Drive::AtonDriveRamp(150);
@@ -388,11 +503,10 @@ void Skills(){
   Drive::AtonTurn(Nine-50);
   Flipper::RotateTo(-320);
   Drive::AtonDriveRamp(750);
-  Flipper::RotateTo(0);
-  // Drive::AtonSlide(570);
-  // Drive::AtonTurn(Nine*2);
+  Flipper::RotateTo(-150);
   Drive::AtonTurn(-Nine);
-  Drive::AtonDriveRamp(-230);
+  Flipper::RotateTo(0);
+  Drive::AtonDriveRamp(-280);
   Drive::AtonTurn(-Nine-100);
 
   Flipper::RotateTo(-240);
@@ -400,15 +514,12 @@ void Skills(){
   Drive::AtonDriveRamp(250);
   Flipper::RotateTo(0);
   Intake::AutoIntakeOff=false;
-  // Drive::AtonDriveRamp(-100);
-  // Drive::SlideRecon(800, 80, -1);
-  // Drive::AtonDriveRamp(-180);
   pros::delay(400);
-  Drive::AtonTurn((Nine*2)-3500);
+  Drive::AtonTurn((Nine*2)-3900);
   Drive::AtonDriveRamp(35);
   Catapult::Shoot=true;
   pros::delay(500);
-  Drive::AtonDriveRamp(400);
+  Drive::AtonDriveRamp(450);
   Drive::AtonTurn(-2000);
   Drive::AtonDriveRamp(150);
   Drive::TimeAutoDrive(450,80);
@@ -432,8 +543,8 @@ void Skills(){
   Drive::AtonDriveRamp(-350);
   Drive::MechDriveLockA();
   Drive::AtonTurn(Nine-100);
-  Drive::TimeAutoDrive(1000,-20);
-  Drive::AtonDriveRamp(-350);
+  Drive::TimeAutoDrive(700,-20);
+  Drive::AtonDriveRamp(-375);
   Drive::MechDriveLockA();
   Intake::AutoIntakeOff=true;
   Lift::RotateTo(0);
