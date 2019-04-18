@@ -1,0 +1,4 @@
+#.vsfolders
+**/.vscode/**
+
+!**/tasks.json
