@@ -2,6 +2,12 @@
 #include "display/lvgl.h"
 #include "display/lv_conf.h"
 
+/**
+ * Creates a GUI to allow the user to see which program will run using 
+ * lvgt interface.
+ * - Each Value will switch the text displayed inside the lable
+**/
+
 bool LablesEnabled = true;
 
 void AtonScreen(void*AtonScreen){

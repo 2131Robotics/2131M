@@ -1,5 +1,5 @@
+//Including only what is needed for the Autonomous Period of the game
 #include "main.h"
-
 #include "N_Custom/declars/Ramping.hpp"
 #include "N_Custom/declars/Aton/Drive.hpp"
 #include "N_Custom/declars/Aton/Catapult.hpp"
@@ -21,12 +21,18 @@
  * from where it left off.
  */
 void autonomous() {
+  //Starts the DriveRampingTask to run in the background
   pros::Task DriveRampingTask (Drive::Drive_Ramping,(void*)"PROS",
     TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT, "DriveRampingTask");
+    
+  //Starts the AutoCatapultTask to run in the background
   pros::Task AutoCatapultTask (Catapult::catapultTaskChargeFire,(void*)"PROS",
     TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT, "AutoCatapultTask");
+
+  //Starts the AutoIntakeTask to run in the background
   pros::Task AutoIntakeTask (Intake::Auto_Intaking,(void*)"PROS",
     TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT, "DriveRampingTask");
 
+  //Run through and select correct autonomous rountine
   PotSelectors();
 }

@@ -1,3 +1,4 @@
+//Includes files neccicary for Initialization
 #include "main.h"
 #include "N_Custom/declars/Systems/Drive.hpp"
 #include "N_Custom/declars/Displays/AtonDisplay.hpp"
@@ -23,19 +24,21 @@
 
 
 void initialize() {
+  //Sets the Drive Brake type for the Drive Motors
   Drive::LeftFMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   Drive::LeftBMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   Drive::RightFMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
   Drive::RightBMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-
+  //Sets the Drive Brake type for the Drive Motors
   Catapult::CatapultMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-
+  //Sets the Drive Brake type for the Drive Motors
   Intake::IntakeMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
-
+  //Sets the Drive Brake type for the Drive Motors
   Lift::LiftMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
-
+  //Sets the Drive Brake type for the Drive Motors
   Flipper::FlipMotor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 
+  //Initalizes all the Motors encoder position to 0
   Drive::LeftFMotor.tarePosition();
   Drive::LeftBMotor.tarePosition();
   Drive::RightFMotor.tarePosition();
@@ -44,6 +47,7 @@ void initialize() {
   Flipper::FlipMotor.tarePosition();
   Lift::LiftMotor.tarePosition();
 
+  //Starts the AtonDisplayTask to see which Atonomous routine to run
   pros::Task AtonDisplayTask (AtonScreen,(void*) "PROS", TASK_PRIORITY_DEFAULT,
   TASK_STACK_DEPTH_DEFAULT, "AtonDisplayTask");
 }
@@ -57,7 +61,7 @@ void disabled() {
   //future aton selector
 }
 
-/**
+  /**
  * Runs after initialize(), and before autonomous when connected to the Field
  * Management System or the VEX Competition Switch. This is intended for
  * competition-specific initialization routines, such as an autonomous selector

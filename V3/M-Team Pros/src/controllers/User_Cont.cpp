@@ -1,3 +1,5 @@
+//Includes files neccicary for the User Controll mode
+
 #include "main.h"
 
 #include "N_Custom/declars/Systems/Drive.hpp"
@@ -20,9 +22,11 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	//Disables Unnecessary tasks for Operator Controll
 	MechDriveRampingEnabled=false;
 	AutoIntakeTaskEnabled=false;
 	AutoCatapultEnabled=false;
+	//starts User Controll while loop
 	while (true) {
 		Drive::IsDriveFippedControll();
 

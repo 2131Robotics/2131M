@@ -1,13 +1,12 @@
 #include "main.h"
 
-namespace Intake{
-  void intakeControll(){
-    //Drive::IsDriveFippedControll();
-    if(!DriveDirInverted){
+namespace Intake{ //inside intake namespace
+  void intakeControll(){ //Function that runs intake controll
+    if(!DriveDirInverted){ //In abll mode
         if(In.isPressed()) setIntakeVel(600);
         else if(Out.isPressed()) setIntakeVel(-600);
         else setIntakeVel(0);
       }
-    else{}
+    else{} // Run nothing in lift mode
   }
 }

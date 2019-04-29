@@ -1,9 +1,21 @@
+//Includes files needed to run Autonomous routines
 #include "main.h"
 #include "N_Custom/declars/Aton/Routines.hpp"
 
+/**
+ * This portion of the code looks at both my potentiometers
+ * and decides which aton routine to run depending on the
+ * value of my levers on my robot.
+ * Uses two potentiometers.
+ *  - First one determines which section of the feild im at...
+ *  - Seconed one to tell this function which program to run.
+**/
+
 void PotSelectors(){
+    //Set the value of the potentiometers to a integer.
     int MainSelectValue = MainAtonSelect.get_value();
     int secSelectValue = SecAtonSelect.get_value();
+    //test the values to determine routine
     if(MainSelectValue > 3500) {
         test();
     }

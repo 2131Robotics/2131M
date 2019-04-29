@@ -24,13 +24,15 @@ void Ramping::TaskRun(){
   if(Pct<0 && Pct>MinDownPct)    Pct=MinDownPct;
 }
 
-namespace Drive{
+namespace Drive{ //inside drive namespace
+    //requestes power form each value in ramping class
   void SetDRMvel(int LFpower,int LBpower,int RFpower,int RBpower){ //DMR
     LFDR.RequestedPct = LFpower;
     RFDR.RequestedPct = RFpower;
     LBDR.RequestedPct = LBpower;
     RBDR.RequestedPct = RBpower;
   }
+    //while ramping is still enabled drive instant power can be reaquested
   void DI(int Lpower,int Rpower){
     LFDR.RequestedPct=Lpower;
     RFDR.RequestedPct=Rpower;
@@ -42,6 +44,7 @@ namespace Drive{
     RBDR.Pct=Rpower;
     Drive::setDriveVel(LBDR.Pct,RBDR.Pct);
   }
+    //drive ramping task set-up
   void Drive_Ramping(void*DriveRampingTask){
     MechDriveRampingEnabled=true;
     while(MechDriveRampingEnabled){
