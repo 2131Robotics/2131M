@@ -23,7 +23,7 @@ namespace Catapult{
     if(UserChargeSenseValue < UserChargeMaxValue) UserCharged = true;
       //Allows driver to fire only in Ball mode
     if(Fire.isPressed() && !DriveDirInverted) {
-        Drive::MechDriveLock();
+        // Drive::MechDriveLock();
         UserCharged = false;
         setCatapultVel(100);
     }
